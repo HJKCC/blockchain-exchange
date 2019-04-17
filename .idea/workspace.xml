@@ -1,11 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+    <list default="true" id="44a54d34-e79b-4690-9120-8c3e16712652" name="Default" comment="" />
     <list id="cdbda11e-7409-49de-a783-a2be509f34d2" name="Ignore" comment="" />
-    <list default="true" id="44a54d34-e79b-4690-9120-8c3e16712652" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-    </list>
     <ignored path="$PROJECT_DIR$/out/" />
     <ignored path="$PROJECT_DIR$/target/" />
     <ignored path="E:/blockchain-exchange/exchange-common/target/" />
@@ -67,7 +64,7 @@
       <path value="$PROJECT_DIR$/exchange-ui/package.json" />
     </packageJsonPaths>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1382" />
@@ -192,15 +189,15 @@
       <option name="presentableId" value="Default" />
       <updated>1555468811260</updated>
       <workItem from="1555468817423" duration="1901000" />
-      <workItem from="1555471976791" duration="3074000" />
+      <workItem from="1555471976791" duration="3395000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="4975000" />
+    <option name="totallyTimeSpent" value="5296000" />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1314" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1314" height="784" extended-state="7" />
     <layout>
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="right" id="Palette&#9;" order="3" />
