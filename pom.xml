@@ -13,8 +13,6 @@
         <module>exchange-api</module>
         <module>exchange-service</module>
         <module>exchange-web</module>
-        <module>blockchain-ui</module>
-        <module>blockchain-ui</module>
         <module>exchange-ui</module>
     </modules>
 
