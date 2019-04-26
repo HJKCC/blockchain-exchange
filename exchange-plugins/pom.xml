@@ -9,10 +9,17 @@
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
-    <artifactId>exchange-api</artifactId>
+    <artifactId>exchange-plugins</artifactId>
     <packaging>jar</packaging>
 
+    <dependencies>
 
+        <!-- 添加 mybatis-generator 依赖包 -->
+        <dependency>
+            <groupId>org.mybatis.generator</groupId>
+            <artifactId>mybatis-generator-core</artifactId>
+            <version>${mybatis.generator.core.version}</version>
+        </dependency>
 
-
+    </dependencies>
 </project>

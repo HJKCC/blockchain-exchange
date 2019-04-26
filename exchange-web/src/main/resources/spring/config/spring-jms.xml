@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+ Copyright (c) 2017 Yanzheng [https://github.com/micyo202/yan]
+
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to deal
+ in the Software without restriction, including without limitation the rights
+ to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+
+ The above copyright notice and this permission notice shall be included in all
+ copies or substantial portions of the Software.
+
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ SOFTWARE.
+ -->
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:jms="http://www.springframework.org/schema/jms"
+       xmlns:amq="http://activemq.apache.org/schema/core"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/jms http://www.springframework.org/schema/jms/spring-jms.xsd
+       http://activemq.apache.org/schema/core http://activemq.apache.org/schema/core/activemq-core-5.15.2.xsd">
+
+    <!-- ActiveMQ 连接工厂 -->
+    <!-- 真正可以产生Connection的ConnectionFactory，由对应的 JMS服务厂商提供-->
+    <!-- 如果连接网络：tcp://ip:61616；未连接网络：tcp://localhost:61616 以及用户名，密码-->
+    <!-- 方法一：使用 Xbean 进行配置 -->
+    <amq:connectionFactory id="amqConnectionFactory" brokerURL="${jms.brokerURL}" userName="${jms.userName}" password="${jms.password}" />
+    <!-- 方法二：普通方式进行配置 -->
+    <!--
+    <bean id="amqConnectionFactory" class="org.apache.activemq.ActiveMQConnectionFactory">
+        <property name="brokerURL" value="${amq.brokerURL}"/>
+        <property name="userName" value="${amq.userName}"/>
+        <property name="password" value="${amq.password}"/>
+    </bean>
+    -->
+
+    <!-- Spring Caching连接工厂 -->
+    <!-- Spring用于管理真正的ConnectionFactory的ConnectionFactory -->
+    <bean id="connectionFactory" class="org.springframework.jms.connection.CachingConnectionFactory">
+        <!-- 目标ConnectionFactory对应真实的可以产生JMS Connection的ConnectionFactory -->
+        <property name="targetConnectionFactory" ref="amqConnectionFactory"/>
+        <!-- 同上，同理 -->
+        <!-- <constructor-arg ref="amqConnectionFactory" /> -->
+        <!-- Session缓存数量 -->
+        <property name="sessionCacheSize" value="100"/>
+    </bean>
+
+    <!-- ******配置消息消费监听器****** Start -->
+    <!-- Queue消息监听器 -->
+    <bean id="queueMessageListener" class="com.yan.core.listener.QueueMessageListener"/>
+    <!-- Topic消息监听器 -->
+    <bean id="topicMessageListener" class="com.yan.core.listener.TopicMessageListener"/>
+    <!-- ******配置消息消费监听器****** End -->
+
+
+    <!-- 方法一：******消息消费者（直接配置监听方式）****** Start -->
+    <!-- 定义Queue监听器 -->
+    <jms:listener-container destination-type="queue" container-type="default" connection-factory="connectionFactory" acknowledge="client">
+        <jms:listener destination="yan.queue" ref="queueMessageListener" />
+    </jms:listener-container>
+    <!-- 定义Topic监听器 -->
+    <jms:listener-container destination-type="topic" container-type="default" connection-factory="connectionFactory" acknowledge="auto">
+        <jms:listener destination="yan.topic" ref="topicMessageListener" />
+    </jms:listener-container>
+    <!-- 方法一：******消息消费者（直接配置监听方式）****** End -->
+
+
+    <!-- 方法二：******消息消费者****** Start -->
+    <!-- 定义Queue的消费者 -->
+    <!--
+    <bean id="queueDestination" class="org.apache.activemq.command.ActiveMQQueue">
+        <constructor-arg value="yan.queue"/>
+    </bean>
+    -->
+    <!-- 定义Topic的消费者 -->
+    <!--
+    <bean id="topicDestination" class="org.apache.activemq.command.ActiveMQTopic">
+        <constructor-arg value="yan.topic"/>
+    </bean>
+    -->
+
+    <!-- Queue消息监听容器 -->
+    <!--
+    <bean id="jmsQueueContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="queueDestination"/>
+        <property name="messageListener" ref="queueMessageListener"/>
+    </bean>
+    -->
+    <!-- Topic消息监听容器 -->
+    <!--
+    <bean id="jmsTopicContainer" class="org.springframework.jms.listener.DefaultMessageListenerContainer">
+        <property name="connectionFactory" ref="connectionFactory"/>
+        <property name="destination" ref="topicDestination"/>
+        <property name="messageListener" ref="topicMessageListener"/>
+    </bean>
+    -->
+    <!-- 方法二：******消息消费者****** End -->
+
+
+</beans>

@@ -14,7 +14,25 @@
         <module>exchange-service</module>
         <module>exchange-web</module>
         <module>exchange-ui</module>
+        <module>exchange-dao</module>
+        <module>exchange-plugins</module>
     </modules>
 
+    <properties>
+        <maven.compiler.source>1.8</maven.compiler.source>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+        <spring.version>5.1.5.RELEASE</spring.version>
+        <mybatis.version>3.4.6</mybatis.version>
+        <mybatis.generator.maven.plugin.version>1.3.7</mybatis.generator.maven.plugin.version>
+        <mybatis.generator.core.version>1.3.7</mybatis.generator.core.version>
+        <mysql.driver.version>8.0.15</mysql.driver.version>
+        <aspectj.version>1.9.2</aspectj.version>
+        <shiro.version>1.4.0</shiro.version>
+        <jackson.version>2.9.6</jackson.version>
+        <slf4j.version>1.7.25</slf4j.version>
+        <logback.version>1.2.3</logback.version>
+        <activemq.version>5.15.2</activemq.version>
+    </properties>
 </project>
