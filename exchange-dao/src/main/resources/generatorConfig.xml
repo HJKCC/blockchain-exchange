@@ -41,24 +41,16 @@
         <!-- 格式化XML代码 -->
         <property name="xmlFormatter" value="org.mybatis.generator.api.dom.DefaultXmlFormatter"/>
 
-        <!-- 重命名插件 -->
-        <!--
-        <plugin type="org.mybatis.generator.plugins.RenameExampleClassPlugin">
-            <property name="searchString" value="Example$" />
-            <property name="replaceString" value="Criteria" />
-        </plugin>
-        -->
-
         <!-- 为生成的Java模型类添加序列化接口 -->
         <!-- <plugin type="org.mybatis.generator.plugins.SerializablePlugin"/> -->
         <!-- 使用自己扩展的序列化插件，对 Example 也实现序列化接口 -->
-        <plugin type="com.cc.plugins.mybatis.generator.SerializablePlugin"/>
+        <plugin type="com.cc.mybatis.generator.SerializablePlugin"/>
 
         <!-- 为生成的Java模型创建一个toString方法 -->
         <plugin type="org.mybatis.generator.plugins.ToStringPlugin"/>
 
         <!-- 自定义代码生成器中生成实体类的中文注释 -->
-        <commentGenerator type="com.cc.plugins.mybatis.generator.MyCommentGenerator">
+        <commentGenerator type="com.cc.mybatis.generator.MyCommentGenerator">
             <property name="author" value="chencheng0816@gmail.com"/>
             <property name="dateFormat" value="yyyy/MM/dd"/>
         </commentGenerator>
@@ -74,24 +66,24 @@
         </javaTypeResolver>
 
         <!--生成Model类存放位置-->
-        <javaModelGenerator targetPackage="com.cc.dao.model" targetProject="${mbg.path}/java">
+        <javaModelGenerator targetPackage="com.cc.model" targetProject="${mbg.path}/java">
             <property name="enableSubPackages" value="false"/>
             <property name="trimStrings" value="true"/>
         </javaModelGenerator>
 
         <!--生成映射文件存放位置-->
-        <sqlMapGenerator targetPackage="mybatis" targetProject="${mbg.path}/resources">
+        <sqlMapGenerator targetPackage="mapper" targetProject="${mbg.path}/resources">
             <property name="enableSubPackages" value="false"/>
         </sqlMapGenerator>
 
         <!--生成Dao类存放位置-->
-        <javaClientGenerator targetPackage="com.cc.dao.mapper" targetProject="${mbg.path}/java"
-                             type="XMLMAPPER">
+        <javaClientGenerator targetPackage="com.cc.dao" targetProject="${mbg.path}/java" type="XMLMAPPER">
             <property name="enableSubPackages" value="false"/>
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <table tableName="TB_PRODUCT" domainObjectName="product"/>
+        <!-- <table tableName="user" domainObjectName="User"/> -->
+        <table tableName="BE_USER" domainObjectName="UserDO"/>
 
     </context>
 </generatorConfiguration>

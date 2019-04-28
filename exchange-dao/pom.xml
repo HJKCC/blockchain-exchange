@@ -47,7 +47,7 @@
                     </dependency>
                     <dependency>
                         <groupId>com.cc</groupId>
-                        <artifactId>exchange-plugins</artifactId>
+                        <artifactId>mybatis-generator-plugins</artifactId>
                         <version>${project.parent.version}</version>
                     </dependency>
                 </dependencies>

@@ -15,7 +15,7 @@
         <module>exchange-web</module>
         <module>exchange-ui</module>
         <module>exchange-dao</module>
-        <module>exchange-plugins</module>
+        <module>mybatis-generator-plugins</module>
     </modules>
 
     <properties>
