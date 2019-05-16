@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<urlrewrite>
+    <rule>
+    	<!-- 页面 -->
+        <from>/webpack/register</from>
+        <to>/webpack/index.html</to>
+    </rule>
+    <rule>
+        <!-- 页面 -->
+        <from>/webpack/login</from>
+        <to>/webpack/index.html</to>
+    </rule>
+    
+</urlrewrite>
+
