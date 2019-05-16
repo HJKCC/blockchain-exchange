@@ -12,7 +12,18 @@
     <artifactId>exchange-api</artifactId>
     <packaging>jar</packaging>
 
-
+    <dependencies>
+        <dependency>
+            <groupId>com.cc</groupId>
+            <artifactId>exchange-dao</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.cc</groupId>
+            <artifactId>exchange-common</artifactId>
+            <version>${parent.version}</version>
+        </dependency>
+    </dependencies>
 
 
 </project>

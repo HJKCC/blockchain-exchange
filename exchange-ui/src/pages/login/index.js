@@ -1,15 +1,28 @@
 import { Component } from 'react';
 import { Form, Icon, Input, Button, Checkbox } from 'antd';
+import reqwest from 'reqwest';
+import router from 'umi/router';
+
 import styles from './index.css';
 
 class LoginForm extends Component {
   handleSubmit = (e) => {
-    e.preventDefault();
     this.props.form.validateFields((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        reqwest({
+          url: '/exchange-web/login.action',
+          method: 'post',
+          data: values,
+          type: 'json',
+          success: function(data) {
+            console.log(data);
+            router.push('/');
+          }
+        })
       }
     });
+
   }
 
   render() {
@@ -19,7 +32,7 @@ class LoginForm extends Component {
         <Form.Item>
           {
             getFieldDecorator(
-              'userName', { rules: [{ required: true, message: 'Please input your username!' }] }
+              'username', { rules: [{ required: true, message: 'Please input your username!' }] }
             ) (
                <Input prefix={<Icon type="user" style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder="Username" />
             )
@@ -44,9 +57,9 @@ class LoginForm extends Component {
           }
           <a className="styles.login-form-forgot" href="">Forgot password</a>
           <br/>
-          <Button type="primary" htmlType="submit" className="styles.login_form_button"> Log in </Button>
+          <Button type="primary" onClick={this.handleSubmit} className="styles.login_form_button"> Log in </Button>
           <br/>
-          <a href="register">Register now</a>
+          <a href="/register">Register now</a>
         </Form.Item>
       </Form>
     );

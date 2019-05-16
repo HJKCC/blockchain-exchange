@@ -1,31 +1,40 @@
 import { Component } from 'react';
-import {
-  Form, Input, Tooltip, Icon, Cascader, Select, Row, Col, Checkbox, Button, AutoComplete,
-} from 'antd';
-
-const { Option } = Select;
-const AutoCompleteOption = AutoComplete.Option;
+import { Form, Input, Button } from 'antd';
+import reqwest from 'reqwest';
+import router from 'umi/router';
 
 class RegistrationForm extends Component {
   state = {
     confirmDirty: false,
-    autoCompleteResult: [],
   };
 
+  //注册
   handleSubmit = (e) => {
-    e.preventDefault();
+    console.log('rest');
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
         console.log('Received values of form: ', values);
+        reqwest({
+          url: '/exchange-web/user/register.action',
+          method: 'post',
+          data: values,
+          type: 'json',
+          success: function(data) {
+            console.log(data);
+            router.push('/login');
+          }
+        })
       }
     });
   }
 
+  //输入值非空，修改state的confirmDirty值
   handleConfirmBlur = (e) => {
-    const value = e.target.value;
+    const value = e.target.value;console.log(value);console.log(!!value);
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   }
 
+  //与第一次输入密码作比较
   compareToFirstPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && value !== form.getFieldValue('password')) {
@@ -35,6 +44,7 @@ class RegistrationForm extends Component {
     }
   }
 
+  //与第二次输入密码作比较
   validateToNextPassword = (rule, value, callback) => {
     const form = this.props.form;
     if (value && this.state.confirmDirty) {
@@ -43,23 +53,13 @@ class RegistrationForm extends Component {
     callback();
   }
 
-  handleWebsiteChange = (value) => {
-    let autoCompleteResult;
-    if (!value) {
-      autoCompleteResult = [];
-    } else {
-      autoCompleteResult = ['.com', '.org', '.net'].map(domain => `${value}${domain}`);
-    }
-    this.setState({ autoCompleteResult });
-  }
-
   render() {
     const { getFieldDecorator } = this.props.form;
-    const { autoCompleteResult } = this.state;
 
+    //样式
     const formItemLayout = {
       labelCol: {
-        xs: { span: 24 },
+        xs: { span: 50 },
         sm: { span: 8 },
       },
       wrapperCol: {
@@ -79,62 +79,40 @@ class RegistrationForm extends Component {
         },
       },
     };
-    const prefixSelector = getFieldDecorator('prefix', {
-      initialValue: '86',
-    })(
-      <Select style={{ width: 70 }}>
-        <Option value="86">+86</Option>
-        <Option value="87">+87</Option>
-      </Select>
-    );
-
-    const websiteOptions = autoCompleteResult.map(website => (
-      <AutoCompleteOption key={website}>{website}</AutoCompleteOption>
-    ));
 
     return (
       <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-        <Form.Item
-          label="Name"
-        >
-          {getFieldDecorator('name', {
-            rules: [{
-              type: 'name', message: 'The input is not valid Name!',
-            }, {
-              required: true, message: 'Please input your Name!',
-            }],
-          })(
-            <Input />
-          )}
+        <Form.Item label="用户名">
+          {
+            getFieldDecorator(
+              'name', {rules: [{required: true, message: 'Please input your name!'}]}
+            ) (
+            <Input type="text"/>
+            )
+          }
         </Form.Item>
-        <Form.Item
-          label="Password"
-        >
-          {getFieldDecorator('password', {
-            rules: [{
-              required: true, message: 'Please input your password!',
-            }, {
-              validator: this.validateToNextPassword,
-            }],
-          })(
-            <Input type="password" />
-          )}
+        <Form.Item label="输入密码">
+          {
+            getFieldDecorator(
+              'password', {rules: [{required: true, message: 'Please input your password!'},
+                                   {validator: this.validateToNextPassword}]}
+            ) (
+              <Input type="password" />
+            )
+        }
         </Form.Item>
-        <Form.Item
-          label="Confirm Password"
-        >
-          {getFieldDecorator('confirm', {
-            rules: [{
-              required: true, message: 'Please confirm your password!',
-            }, {
-              validator: this.compareToFirstPassword,
-            }],
-          })(
-            <Input type="password" onBlur={this.handleConfirmBlur} />
-          )}
+        <Form.Item label="确认密码" >
+          {
+            getFieldDecorator(
+              'confirm', {rules: [{required: true, message: 'Please confirm your password!'},
+                                  {validator: this.compareToFirstPassword,}]}
+            ) (
+              <Input type="password" onBlur={this.handleConfirmBlur} />
+            )
+          }
         </Form.Item>
         <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" htmlType="submit">Register</Button>
+          <Button type="primary" onClick={this.handleSubmit}>Register</Button>
         </Form.Item>
       </Form>
     );
