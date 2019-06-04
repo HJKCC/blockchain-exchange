@@ -1,6 +1,5 @@
 import { Component } from 'react';
-import reqwest from 'reqwest';
-import { Form, Modal, Button, Input, message } from 'antd';
+import { Form, Modal, Input } from 'antd';
 import * as ReqwestUtil from '../../../utils/ReqwestUtil';
 
 import styles from './index.css';
@@ -37,7 +36,6 @@ class AddUser extends Component {
         )
       }
     });
-
   }
 
   handleCancel = (e) => {

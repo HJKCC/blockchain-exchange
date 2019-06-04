@@ -104,15 +104,17 @@ class UserList extends Component {
       }, {
         title: '操作',
         key: 'operation',
-        render: (text, record) => {
+        width: '175px',
+        render: (record) => {
           return (
             <div>
-              <div>
-                <a href="javascript:void(0)" onClick={this.handleDelete.bind(this,record.id)}>delete</a>
-              </div>
               <EditUser record={record} refrush={this.props.refrush}>
                 <a href="javascript:;">edit</a>
               </EditUser>
+
+                <div>
+                  <a href="javascript:void(0)" onClick={this.handleDelete.bind(this,record.id)}>delete</a>
+                </div>
             </div>
           );
         }

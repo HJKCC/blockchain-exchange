@@ -1,19 +1,11 @@
 import { Component } from 'react';
-import reqwest from 'reqwest';
-import { Form, Modal, Button, Input, message } from 'antd';
-
+import { Form, Modal, Input } from 'antd';
+import * as ReqwestUtil from '../../../utils/ReqwestUtil';
 import styles from './index.css';
 
 class EditUser extends Component {
   state = {
-    visible: false,
-    id: '',
-    name: '',
-    password: '',
-    telephone: '',
-    email: '',
-    createdTime: '',
-    modifiedTime: ''
+    visible: false
   }
 
   showModel = () => {
@@ -25,23 +17,19 @@ class EditUser extends Component {
   handleOk = (e) => {
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        reqwest({
-          url: '/exchange-web/user/register.action',
-          method: 'post',
-          data: values,
-          type: 'json',
-          success: (data) => {
-            console.log(data);
+        ReqwestUtil.request({
+          url: '/exchange-web/user/modifyUser.action',
+          data: values
+        }).then(
+          (data) => {
             this.setState({
               visible: false
             });
             this.props.refrush();
           }
-        })
+        )
       }
     });
-
   }
 
   handleCancel = (e) => {
@@ -62,55 +50,70 @@ class EditUser extends Component {
         sm: { span: 16 },
       },
     };
-    const tailFormItemLayout = {
-      wrapperCol: {
-        xs: {
-          span: 24,
-          offset: 0,
-        },
-        sm: {
-          span: 16,
-          offset: 8,
-        },
-      },
-    };
 
     return (
       <div>
         <span onClick={this.showModel}>{this.props.children}</span>
         <Modal
-          title='新增用户'
+          title='编辑用户'
           visible={this.state.visible}
           onOk={this.handleOk}
           onCancel={this.handleCancel}
         >
           <Form {...formItemLayout} className={styles.be_add_user_form}>
-            <Form.Item label='用户名'>
+            <Form.Item label='用户ID' className={styles.be_hide_form}>
               {
                 getFieldDecorator(
-                  'name', {rules: [{required: true, message: 'Please input your name!'}]}
+                  'id', {initialValue: this.props.record.id}
                 ) (
-                <Input type='text'/>
+                  <Input type='text' disabled/>
                 )
               }
             </Form.Item>
-            <Form.Item label='输入密码'>
+            <Form.Item label='有效标识' className={styles.be_hide_form}>
               {
                 getFieldDecorator(
-                  'password', {rules: [{required: true, message: 'Please input your password!'},
-                                       {validator: this.validateToNextPassword}]}
+                  'isDeleted', {initialValue: this.props.record.isDeleted}
+                ) (
+                  <Input type='text' disabled/>
+                )
+              }
+            </Form.Item>
+
+            <Form.Item label='用户名'>
+              {
+                getFieldDecorator(
+                  'name', {initialValue: this.props.record.name}
+                ) (
+                <Input type='text' disabled/>
+                )
+              }
+            </Form.Item>
+            <Form.Item label='用户密码'>
+              {
+                getFieldDecorator(
+                  'password', {rules: [{required: true, message: 'Please input your password!'}],
+                              initialValue: this.props.record.password}
                 ) (
                   <Input type='password' />
                 )
             }
             </Form.Item>
-            <Form.Item label='确认密码' >
+            <Form.Item label='手机号' >
               {
                 getFieldDecorator(
-                  'confirm', {rules: [{required: true, message: 'Please confirm your password!'},
-                                      {validator: this.compareToFirstPassword,}]}
+                  'telephone', {initialValue: this.props.record.telephone}
                 ) (
-                  <Input type='password' onBlur={this.handleConfirmBlur} />
+                  <Input type='text'/>
+                )
+              }
+            </Form.Item>
+            <Form.Item label='邮箱地址' >
+              {
+                getFieldDecorator(
+                  'email', {initialValue: this.props.record.email}
+                ) (
+                  <Input type='text'/>
                 )
               }
             </Form.Item>

@@ -24,6 +24,10 @@
     background: #a3e284;
     font-weight: 700;
 }
+:global(.ant-table-tbody > tr > td) {
+    word-wrap: break-word;
+    word-break: break-all;
+}
 :global(.ant-table table) {
     text-align: center;
 }

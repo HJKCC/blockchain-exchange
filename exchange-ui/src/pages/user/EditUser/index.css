@@ -1,5 +1,8 @@
 .be_add_user_form {
 }
+.be_hide_form {
+  display: none
+}
 
 :global(.ant-modal-header) {
   background: #6d94b9;
