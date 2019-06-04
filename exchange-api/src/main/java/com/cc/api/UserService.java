@@ -15,4 +15,8 @@ public interface UserService {
 	UserDO login(String username);
 
 	void addUser(UserDO userDO);
+
+	void modifyUser(UserDO userDO);
+
+	void deleteUser(String ids);
 }

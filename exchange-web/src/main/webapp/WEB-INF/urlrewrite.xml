@@ -2,13 +2,23 @@
 
 <urlrewrite>
     <rule>
-    	<!-- 页面 -->
+    	<!-- 注册页面 -->
         <from>/webpack/register</from>
         <to>/webpack/index.html</to>
     </rule>
     <rule>
-        <!-- 页面 -->
+        <!-- 登录页面 -->
         <from>/webpack/login</from>
+        <to>/webpack/index.html</to>
+    </rule>
+    <rule>
+        <!-- 首页 -->
+        <from>/webpack/newIndex</from>
+        <to>/webpack/index.html</to>
+    </rule>
+    <rule>
+        <!-- 用户 -->
+        <from>/webpack/user</from>
         <to>/webpack/index.html</to>
     </rule>
     

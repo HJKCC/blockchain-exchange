@@ -2,35 +2,37 @@ import { Component } from 'react';
 import { Form, Input, Button } from 'antd';
 import reqwest from 'reqwest';
 import router from 'umi/router';
+import * as ReqwestUtil from '../../utils/ReqwestUtil';
 
-class RegistrationForm extends Component {
+import styles from './index.css';
+
+class RegisterForm extends Component {
   state = {
     confirmDirty: false,
   };
 
   //注册
   handleSubmit = (e) => {
-    console.log('rest');
     this.props.form.validateFieldsAndScroll((err, values) => {
       if (!err) {
-        console.log('Received values of form: ', values);
-        reqwest({
+        ReqwestUtil.request({
           url: '/exchange-web/user/register.action',
-          method: 'post',
-          data: values,
-          type: 'json',
-          success: function(data) {
-            console.log(data);
+          data: values
+        }).then(
+          (data) => {
+            this.setState({
+              visible: false
+            });
             router.push('/login');
           }
-        })
+        )
       }
     });
   }
 
   //输入值非空，修改state的confirmDirty值
   handleConfirmBlur = (e) => {
-    const value = e.target.value;console.log(value);console.log(!!value);
+    const value = e.target.value;
     this.setState({ confirmDirty: this.state.confirmDirty || !!value });
   }
 
@@ -56,10 +58,9 @@ class RegistrationForm extends Component {
   render() {
     const { getFieldDecorator } = this.props.form;
 
-    //样式
     const formItemLayout = {
       labelCol: {
-        xs: { span: 50 },
+        xs: { span: 24 },
         sm: { span: 8 },
       },
       wrapperCol: {
@@ -81,42 +82,42 @@ class RegistrationForm extends Component {
     };
 
     return (
-      <Form {...formItemLayout} onSubmit={this.handleSubmit}>
-        <Form.Item label="用户名">
+      <Form {...formItemLayout} className={styles.register_form} onSubmit={this.handleSubmit}>
+        <Form.Item label='用户名'>
           {
             getFieldDecorator(
               'name', {rules: [{required: true, message: 'Please input your name!'}]}
             ) (
-            <Input type="text"/>
+            <Input type='text'/>
             )
           }
         </Form.Item>
-        <Form.Item label="输入密码">
+        <Form.Item label='输入密码'>
           {
             getFieldDecorator(
               'password', {rules: [{required: true, message: 'Please input your password!'},
                                    {validator: this.validateToNextPassword}]}
             ) (
-              <Input type="password" />
+              <Input type='password' />
             )
         }
         </Form.Item>
-        <Form.Item label="确认密码" >
+        <Form.Item label='确认密码' >
           {
             getFieldDecorator(
               'confirm', {rules: [{required: true, message: 'Please confirm your password!'},
                                   {validator: this.compareToFirstPassword,}]}
             ) (
-              <Input type="password" onBlur={this.handleConfirmBlur} />
+              <Input type='password' onBlur={this.handleConfirmBlur} />
             )
           }
         </Form.Item>
-        <Form.Item {...tailFormItemLayout}>
-          <Button type="primary" onClick={this.handleSubmit}>Register</Button>
+        <Form.Item  {...tailFormItemLayout} className={styles.register_form_button}>
+          <Button type='primary' onClick={this.handleSubmit}>Register</Button>
         </Form.Item>
       </Form>
     );
   }
 }
 
-export default Form.create({ name: 'register' })(RegistrationForm);
+export default Form.create({ name: 'register' })(RegisterForm);

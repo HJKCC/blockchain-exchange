@@ -1,6 +1,7 @@
 package com.cc.service;
 
 import com.cc.api.UserService;
+import com.cc.common.constant.ExchangeCST;
 import com.cc.common.util.CommonUtil;
 import com.cc.dao.UserDAO;
 import com.cc.model.UserDO;
@@ -20,7 +21,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public List<UserDO> findAllUsers() {
-		return null;
+		return userDAO.selectAllUsers();
 	}
 
 	@Override
@@ -31,5 +32,21 @@ public class UserServiceImpl implements UserService {
 	@Override
 	public void addUser(UserDO userDO) {
 		userDAO.insert(userDO);
+	}
+
+	@Override
+	public void modifyUser(UserDO userDO) {
+		userDAO.updateByPrimaryKey(userDO);
+	}
+
+	@Override
+	public void deleteUser(String ids) {
+		String[] userIds = ids.split(",");
+		for(String userId : userIds) {
+			UserDO userDO = new UserDO();
+			userDO.setId(Long.valueOf(userId));
+			userDO.setIsDeleted(ExchangeCST.DELETE);
+			userDAO.updateByPrimaryKeySelective(userDO);
+		}
 	}
 }

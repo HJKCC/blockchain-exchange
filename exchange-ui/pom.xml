@@ -11,5 +11,57 @@
 
     <artifactId>exchange-ui</artifactId>
 
+    <properties>
+      <frontend.maven.plugin>1.7.6</frontend.maven.plugin>
+      <node.version>v10.15.3</node.version>
+      <npm.version>6.4.1</npm.version>
+      <yarn.version>1.15.2</yarn.version>
+    </properties>
+
+    <!--<build>-->
+      <!--<plugins>-->
+        <!--<plugin>-->
+          <!--<groupId>com.github.eirslett</groupId>-->
+          <!--<artifactId>frontend-maven-plugin</artifactId>-->
+          <!--<version>${frontend.maven.plugin}</version>-->
+          <!--<executions>-->
+            <!--&lt;!&ndash; install node and npm &ndash;&gt;-->
+            <!--<execution>-->
+              <!--<id>install node and npm</id>-->
+              <!--<goals>-->
+                <!--<goal>install-node-and-npm</goal>-->
+              <!--</goals>-->
+              <!--<configuration>-->
+                <!--<nodeVersion>${node.version}</nodeVersion>-->
+                <!--<npmVersion>${npm.version}</npmVersion>-->
+              <!--</configuration>-->
+            <!--</execution>-->
+            <!--&lt;!&ndash; Install all project dependencies &ndash;&gt;-->
+            <!--<execution>-->
+              <!--<id>npm install</id>-->
+              <!--<goals>-->
+                <!--<goal>npm</goal>-->
+              <!--</goals>-->
+              <!--&lt;!&ndash; optional: default phase is "generate-resources" &ndash;&gt;-->
+              <!--<phase>generate-resources</phase>-->
+              <!--&lt;!&ndash; Optional configuration which provides for running any npm command &ndash;&gt;-->
+              <!--<configuration>-->
+                <!--<arguments>install</arguments>-->
+              <!--</configuration>-->
+            <!--</execution>-->
+            <!--&lt;!&ndash; Build and minify static files &ndash;&gt;-->
+            <!--<execution>-->
+              <!--<id>npm build</id>-->
+              <!--<goals>-->
+                <!--<goal>npm</goal>-->
+              <!--</goals>-->
+              <!--<configuration>-->
+                <!--<arguments>build</arguments>-->
+              <!--</configuration>-->
+            <!--</execution>-->
+          <!--</executions>-->
+        <!--</plugin>-->
+      <!--</plugins>-->
+    <!--</build>-->
 
 </project>

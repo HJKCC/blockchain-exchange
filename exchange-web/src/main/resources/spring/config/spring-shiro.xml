@@ -71,24 +71,21 @@
     <bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
         <!-- Shiro的核心安全接口，这个属性是必须的 -->
         <property name="securityManager" ref="securityManager"/>
-        <!-- 要求登录时的链接(登录页面地址)，非必须的属性，默认会自动寻找Web工程根目录下的"/login.jsp"页面 -->
-        <property name="loginUrl" value="/login.jsp"/>
+        <!-- 要求登录时的链接(登录页面地址)，非必须的属性，默认会自动寻找Web工程根目录下的"/login"页面 -->
+        <property name="loginUrl" value="/webpack/login"/>
         <!-- 登录成功后要跳转的连接 -->
-        <property name="successUrl" value="/index.jsp"/>
+        <property name="successUrl" value="/webpack/newIndex"/>
         <!-- 用户访问未对其授权的资源时，所显示的连接 -->
-        <property name="unauthorizedUrl" value="/404.jsp"/>
+        <property name="unauthorizedUrl" value="/webpack/404"/>
         <property name="filterChainDefinitions">
             <value>
-                /webpack/css/* = anon
-                /webpack/images/* = anon
-                /webpack/ = login
+                /logout* = login
                 /user/* = login
-                /register* = anon
+                /user/register* = anon
                 /list* = login
-                /webpack/index.js = login
-                /webpack/index.jsp = login
-                /login.jsp = anon
-                /login.js = anon
+                /webpack/ = login
+                /webpack/login = anon
+                /webpack/register = anon
             </value>
         </property>
         <property name="filters">

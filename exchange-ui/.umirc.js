@@ -4,7 +4,7 @@ export default {
   treeShaking: true,
   publicPath: "/exchange-web/webpack/",
   outputPath: "../exchange-web/src/main/webapp/webpack",
-  base: "/exchange-web/webpack/",
+  // base: "/exchange-web/webpack/",
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {

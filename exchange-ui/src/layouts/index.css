@@ -1,15 +1,66 @@
-
 .normal {
   font-family: Georgia, sans-serif;
   text-align: center;
 }
 
-.title {
-  font-size: 2.5rem;
-  font-weight: normal;
-  letter-spacing: -1px;
-  background: darkslateblue;
-  padding: .6em 0;
-  color: white;
-  margin: 0;
+.settingMenu {
+  height: 32px;
+  right: 40px;
+  top: 16px;
+  position: absolute;
+}
+
+.login_button {
+  right: 5px;
+}
+
+.MainLayout {
+
+}
+
+.logo {
+  width: 123px;
+  height: 64px;
+  background: #67ca2c;
+  margin: 1px 0px 1px 0;
+  position: absolute;
+  z-index: 10;
+  font-size: 40px;
+}
+
+/* 菜单栏 */
+.HeaderLayout {
+  height: 64px;
+  background: #1e6cb7;
+  padding: 0 0;
+}
+
+.MainContent {
+  height: 600px;
+
+}
+
+:global(.ant-menu) {
+  background: #1e6cb7;
+}
+
+/* 菜单字体设置 */
+:global(.ant-menu-horizontal > .ant-menu-item) {
+  color: #fff;
+  font-size: 24px;
+}
+
+/* 鼠标移动至菜单单元 */
+:global(.ant-menu-horizontal > .ant-menu-item-active:hover) {
+  background: #365c7f;
+}
+
+/* 鼠标选中菜单单元 */
+:global(.ant-menu-horizontal > .ant-menu-item-selected) {
+  background: #365c7f;
+}
+
+/* footer位置 */
+:global(.ant-layout-footer) {
+  padding: 0px 50px;
 }

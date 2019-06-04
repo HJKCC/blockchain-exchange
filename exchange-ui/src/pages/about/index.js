@@ -19,11 +19,10 @@ class LoginForm extends Component {
           success: function(data) {
             console.log(data.code == 1);
             if (data.code == 1) {
-              message.success(data.info, 1);
-              localStorage.loginUserName = values.username;
+              message.success(data.info, 2);
               router.push('/newIndex');
             } else if (data.code == 0) {
-              message.warning(data.info, 1);
+              message.warning(data.info, 2);
             }
           },
           error: function() {

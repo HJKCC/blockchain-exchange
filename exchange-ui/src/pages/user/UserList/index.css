@@ -1,0 +1,29 @@
+.be_search_user {
+  margin: 10px 0 0 27px;
+  text-align: left;
+}
+
+.be_add_user {
+  right: 40px;
+  margin: -32px 98px 0 0;
+  position: absolute;
+}
+
+.be_del_user {
+  right: 40px;
+  margin: -32px 0 0 0;
+  position: absolute;
+}
+
+.be_table_user {
+  margin-top: 10px;
+}
+
+:global(.ant-table-thead > tr > th) {
+    text-align: center;
+    background: #a3e284;
+    font-weight: 700;
+}
+:global(.ant-table table) {
+    text-align: center;
+}

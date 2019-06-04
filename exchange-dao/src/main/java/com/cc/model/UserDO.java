@@ -48,7 +48,7 @@ public class UserDO implements Serializable {
     /**
      * 0：有效；1：已删除
      */
-    private Boolean isDeleted;
+    private Short isDeleted;
 
     private static final long serialVersionUID = 1L;
 
@@ -108,11 +108,11 @@ public class UserDO implements Serializable {
         this.modifiedTime = modifiedTime;
     }
 
-    public Boolean getIsDeleted() {
+    public Short getIsDeleted() {
         return isDeleted;
     }
 
-    public void setIsDeleted(Boolean isDeleted) {
+    public void setIsDeleted(Short isDeleted) {
         this.isDeleted = isDeleted;
     }
 

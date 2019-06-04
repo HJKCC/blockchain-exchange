@@ -49,12 +49,15 @@ public class UserNameRealm extends AuthorizingRealm {
 
 		//踢出已登录的用户
 		Collection<Session> sessions = shiroSessionDAO.getActiveSessions();
-		for (Session session : sessions) {
-			if (username.equals(session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY))) {
-				shiroSessionDAO.delete(session);   //清除session
-				break;
+		if (CommonUtil.isNotEmpty(sessions)) {
+			for (Session session : sessions) {
+				if (username.equals(session.getAttribute(DefaultSubjectContext.PRINCIPALS_SESSION_KEY))) {
+					shiroSessionDAO.delete(session);   //清除session
+					break;
+				}
 			}
 		}
+
 
 		UserDO userDO = userService.login(username);
 		if (CommonUtil.isEmpty(userDO)) {
