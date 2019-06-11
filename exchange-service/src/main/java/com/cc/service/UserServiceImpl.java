@@ -7,6 +7,8 @@ import com.cc.dao.UserDAO;
 import com.cc.model.UserDO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -43,9 +45,14 @@ public class UserServiceImpl implements UserService {
 	public void deleteUser(String ids) {
 		String[] userIds = ids.split(",");
 		for(String userId : userIds) {
+			Date now = new Date();
+
 			UserDO userDO = new UserDO();
 			userDO.setId(Long.valueOf(userId));
+			userDO.setCreatedTime(now);
+			userDO.setModifiedTime(now);
 			userDO.setIsDeleted(ExchangeCST.DELETE);
+
 			userDAO.updateByPrimaryKeySelective(userDO);
 		}
 	}

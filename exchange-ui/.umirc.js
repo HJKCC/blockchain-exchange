@@ -4,7 +4,7 @@ export default {
   treeShaking: true,
   publicPath: "/exchange-web/webpack/",
   outputPath: "../exchange-web/src/main/webapp/webpack",
-  base: "/exchange-web/webpack/",
+  // base: "/exchange-web/webpack/",
   plugins: [
     // ref: https://umijs.org/plugin/umi-plugin-react.html
     ['umi-plugin-react', {
@@ -30,6 +30,14 @@ export default {
          "/exchange-web/": {
             "target": "http://127.0.0.1:8080/",
             "changeOrigin": true
-        }
+        },
+        "/market/":  {
+           "target": "https://api.hbdm.com/",
+           "changeOrigin": true
+       },
+       "/api/":  {
+          "target": "https://api.hbdm.com/",
+          "changeOrigin": true
+      },
    }
 }

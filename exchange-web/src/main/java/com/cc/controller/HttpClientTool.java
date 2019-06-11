@@ -1,4 +1,4 @@
-package com.example.datatest.utils;
+package com.cc.controller;
 
 
 import org.apache.http.HttpEntity;
@@ -79,8 +79,7 @@ public class HttpClientTool {
 					"http", PlainConnectionSocketFactory.getSocketFactory()).register(
 					"https", sslsf).build();
 			// 初始化连接管理器
-			pool = new PoolingHttpClientConnectionManager(
-					socketFactoryRegistry);
+			pool = new PoolingHttpClientConnectionManager(socketFactoryRegistry);
 			// 将最大连接数增加到200，实际项目最好从配置文件中读取这个值
 			pool.setMaxTotal(200);
 			// 设置最大路由
@@ -165,11 +164,10 @@ public class HttpClientTool {
 			// System.out.println(ContentType.getOrDefault(response.getEntity()).getMimeType());
 
 			// 判断响应状态
-			if (response.getStatusLine().getStatusCode() >= 300) {
-			    logger.error("HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode());
-			}
-
-			if (HttpStatus.SC_OK == response.getStatusLine().getStatusCode()) {
+			int statusCode = response.getStatusLine().getStatusCode();
+			if (statusCode >= 300 || statusCode < 200) {
+				logger.error("HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode());
+			} else if (statusCode == 200) {
 				responseContent = EntityUtils.toString(entity, CHARSET_UTF_8);
 				EntityUtils.consume(entity);
 			}
@@ -221,11 +219,10 @@ public class HttpClientTool {
 			// System.out.println(ContentType.getOrDefault(response.getEntity()).getMimeType());
 
 			// 判断响应状态
-			if (response.getStatusLine().getStatusCode() >= 300) {
+			int statusCode = response.getStatusLine().getStatusCode();
+			if (statusCode >= 300 || statusCode < 200) {
 				logger.error("HTTP Request is not success, Response code is " + response.getStatusLine().getStatusCode());
-			}
-
-			if (HttpStatus.SC_OK == response.getStatusLine().getStatusCode()) {
+			} else if (statusCode == 200) {
 				responseContent = EntityUtils.toString(entity, CHARSET_UTF_8);
 				EntityUtils.consume(entity);
 			}
@@ -399,7 +396,7 @@ public class HttpClientTool {
 			request.setEntity(multipartEntity);
 			request.addHeader("Content-Type","multipart/form-data; boundary=----------ThIs_Is_tHe_bouNdaRY_$");
 
-			DefaultHttpClient httpClient = new DefaultHttpClient();
+			CloseableHttpClient httpClient = HttpClients.createSystem();
 			HttpResponse response = httpClient.execute(request);
 
 			InputStream is = response.getEntity().getContent();
@@ -422,17 +419,12 @@ public class HttpClientTool {
 
 
 
-	/*public static void main(String[] args) throws Exception {
+	public static void main(String[] args) throws Exception {
 
-		MultipartEntity multipartEntity = new MultipartEntity(HttpMultipartMode.BROWSER_COMPATIBLE,"----------ThIs_Is_tHe_bouNdaRY_$", Charset.defaultCharset());
-		multipartEntity.addPart("memberId",new StringBody("1616457026873851904", Charset.forName("UTF-8")));
-		multipartEntity.addPart("verifyFace",new FileBody(new File("C:\\Users\\kaihu\\Desktop\\ycy_001.png"),"image/png"));
+		HttpGet request = new HttpGet("https://api.hbdm.com/market/history/kline?period=15min&size=200&symbol=BTC_CQ");
+		request.addHeader("Content-Type","application/x-www-form-urlencoded");
 
-		HttpPost request = new HttpPost("http://boapi.dev.moredian.com:8000/member/update?accessToken=Fkg7gkFdcgOilJaEoajw3zhdAWhDZIBJmatqkdOaVI8UKxh5Uyn_OLHKOqvIY5Fc");
-		request.setEntity(multipartEntity);
-		request.addHeader("Content-Type","multipart/form-data; boundary=----------ThIs_Is_tHe_bouNdaRY_$");
-
-		DefaultHttpClient httpClient = new DefaultHttpClient();
+		CloseableHttpClient httpClient = getHttpClient();
 		HttpResponse response =httpClient.execute(request);
 
 		InputStream is = response.getEntity().getContent();
@@ -444,7 +436,7 @@ public class HttpClientTool {
 		}
 
 		System.out.println("返回结果是:"+buffer.toString());
-	}*/
+	}
 
 }
 
