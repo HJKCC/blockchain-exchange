@@ -35,24 +35,24 @@
   width: 40px;
 }
 
-.be_search_user {
+.be_search_contract {
   margin: 10px 0 0 27px;
   text-align: left;
 }
 
-.be_add_user {
+.be_add_contract {
   right: 40px;
   margin: -32px 98px 0 0;
   position: absolute;
 }
 
-.be_del_user {
+.be_del_contract {
   right: 40px;
   margin: -32px 0 0 0;
   position: absolute;
 }
 
-.be_table_user {
+.be_table_contract {
   margin-top: 10px;
 }
 

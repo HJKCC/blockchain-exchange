@@ -52,7 +52,7 @@ class EditUser extends Component {
     };
 
     return (
-      <div>
+      <span>
         <span onClick={this.showModel}>{this.props.children}</span>
         <Modal
           title='编辑用户'
@@ -119,7 +119,7 @@ class EditUser extends Component {
             </Form.Item>
           </Form>
         </Modal>
-      </div>
+      </span>
     )
   }
 }

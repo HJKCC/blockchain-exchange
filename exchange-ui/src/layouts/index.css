@@ -1,6 +1,9 @@
-.normal {
+.MainLayout {
   font-family: Georgia, sans-serif;
   text-align: center;
+  width: 1280px;
+  margin: 0 auto;
+  position: relative;
 }
 
 .settingMenu {
@@ -12,10 +15,6 @@
 
 .login_button {
   right: 5px;
-}
-
-.MainLayout {
-
 }
 
 .logo {
@@ -30,14 +29,12 @@
 
 /* 菜单栏 */
 .HeaderLayout {
-  height: 64px;
+  height: 66px;
   background: #1e6cb7;
-  padding: 0 0;
 }
 
 .MainContent {
   height: 600px;
-
 }
 
 :global(.ant-menu) {
@@ -48,6 +45,7 @@
 :global(.ant-menu-horizontal > .ant-menu-item) {
   color: #fff;
   font-size: 24px;
+  margin: 0px 5px;
 }
 
 /* 鼠标移动至菜单单元 */

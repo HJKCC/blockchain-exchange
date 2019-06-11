@@ -1,19 +1,35 @@
-import styles from './index.css';
-import Link from 'umi/link';
+import React, { Component } from "react";
+import { connect } from "dva";
+import ContractList from './ContractList';
 
 
-export default function() {
-  return (
-    <div className={styles.normal}>
-      <div className={styles.welcome} />
-      <ul className={styles.list}>
-        <li>To get started, edit <code>src/pages/index.js</code> and save to reload.</li>
-        <li>
-          <Link to='/login'>
-            Go to Login!
-          </Link>
-        </li>
-      </ul>
-    </div>
-  );
+class newIndex extends Component {
+  state = {
+  }
+
+  refrush = () => {
+    this.props.dispatch({
+      type: 'newIndex/listContracts',
+      name:{}
+    });
+  }
+
+  render() {
+    const { list } = this.props //获取下面的list
+    return (
+      <div>
+        <ContractList list={list} refrush={this.refrush}></ContractList>
+      </div>
+    )
+  }
 }
+
+// models的state变成组件的props
+function mapStateToProps (state) {
+    const { list } = state.newIndex;
+    return {
+        list
+    };
+}
+
+export default connect(mapStateToProps)(newIndex);

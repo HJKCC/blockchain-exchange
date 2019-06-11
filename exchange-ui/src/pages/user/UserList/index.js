@@ -74,47 +74,64 @@ class UserList extends Component {
         title: '用户名',
         dataIndex: 'name',
         key: 'name',
-        width: '80px'
+        width: 150,
+        render: (text) => {
+          return (
+            <div title={text} className={styles.be_column_name}>{text}</div>
+          );
+        }
       }, {
         title: '手机号',
         dataIndex: 'telephone',
         key: 'telephone',
-        width: '150px',
+        width: 150,
         render: (text) => {
-          return CommonUtil.formatNull(text);
+          return (
+            <div title={text} className={styles.be_column_telephone}>{CommonUtil.formatNull(text)}</div>
+          );
         }
       }, {
         title: '邮箱地址',
         dataIndex: 'email',
         key: 'email',
-        width: '200px',
+        width: 250,
         render: (text) => {
-          return CommonUtil.formatNull(text);
+          return (
+            <div title={text} className={styles.be_column_email}>{CommonUtil.formatNull(text)}</div>
+          );
         }
       }, {
         title: '创建时间',
         dataIndex: 'createdTime',
         key: 'createdTime',
-        width: '175px'
+        width: 250,
+        render: (text) => {
+          return (
+            <div title={text} className={styles.be_column_time}>{text}</div>
+          );
+        }
       }, {
         title: '修改时间',
         dataIndex: 'modifiedTime',
         key: 'modifiedTime',
-        width: '175px'
+        width: 250,
+        render: (text) => {
+          return (
+            <div title={text} className={styles.be_column_time}>{text}</div>
+          );
+        }
       }, {
         title: '操作',
-        key: 'operation',
-        width: '175px',
+        key: 'operations',
         render: (record) => {
           return (
-            <div>
-              <EditUser record={record} refrush={this.props.refrush}>
+            <div className={styles.be_column_operations}>
+              <EditUser className={styles.be_column_edit} record={record} refrush={this.props.refrush}>
                 <a href="javascript:;">edit</a>
               </EditUser>
-
-                <div>
-                  <a href="javascript:void(0)" onClick={this.handleDelete.bind(this,record.id)}>delete</a>
-                </div>
+              <div className={styles.be_column_delete}>
+                <a href="javascript:void(0)" onClick={this.handleDelete.bind(this,record.id)}>delete</a>
+              </div>
             </div>
           );
         }
@@ -132,7 +149,7 @@ class UserList extends Component {
     const Search = Input.Search;
 
     return (
-      <div>
+      <div style={{position:'relative'}}>
         <div className={styles.be_search_user}>
             <span style={{marginRight: 10, fontWeight: 700 }}>筛选:</span>
             <Search
@@ -155,7 +172,7 @@ class UserList extends Component {
             rowKey='id'
             rowSelection={rowSelection}
             dataSource={filterList}
-            scroll={filterList.length > 8 ? {y : 450}: {y : false}}
+            scroll={filterList.length > 10 ? {y : 450}: {y : false}}
           />
         </div>
       </div>

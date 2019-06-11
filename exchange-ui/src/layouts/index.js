@@ -72,8 +72,7 @@ function BasicLayout(props) {
   );
 
   return (
-    <div className={styles.normal}>
-
+    <Layout className={styles.MainLayout}>
       <div className={styles.settingMenu}>
         {noLogin
             ?
@@ -87,20 +86,20 @@ function BasicLayout(props) {
         }
       </div>
 
-      <Layout className={styles.MainLayout}>
-         <div className={styles.logo}>BE</div>
-         <Header className={styles.HeaderLayout}>
-            <HeaderLayout pathname={props.location.pathname}/>
-         </Header>
-         <Breadcrumb style={{ margin: '2px 0' }}></Breadcrumb>
-         <Content className={styles.MainContent}>
-            <div>{props.children}</div>
-         </Content>
-         <Breadcrumb style={{ margin: '2px 0' }}></Breadcrumb>
-         <Footer style={{ textAlign: 'center' }}>Blockchain-Exchange ©2019 Created by HJKCC</Footer>
-      </Layout>
-    </div>
+      <div className={styles.logo}>BE</div>
+      
+      <Header className={styles.HeaderLayout}>
+         <HeaderLayout pathname={props.location.pathname}/>
+      </Header>
 
+      <Breadcrumb style={{ margin: '2px 0' }}></Breadcrumb>
+      <Content className={styles.MainContent}>
+         <div>{props.children}</div>
+      </Content>
+      <Breadcrumb style={{ margin: '2px 0' }}></Breadcrumb>
+
+      <Footer style={{ textAlign: 'center' }}>Blockchain-Exchange ©2019 Created by HJKCC</Footer>
+   </Layout>
   );
 }
 

@@ -2,41 +2,43 @@ import reqwest from 'reqwest';
 import { message } from 'antd';
 import router from 'umi/router';
 
-function checkStatus(response) {
-  if (response.status >= 200 && response.status < 300) {
-    return response;
-  }
-  const error = new Error(response.statusText);
-  error.response = response;
-  throw error;
-}
+import * as CommonUtil from './CommonUtil';
 
+let defData = {
+  obj: '',
+  rows: [],
+  total: 0
+};
 
 function checkCode(data) {
-  if (data.code == 6) {  // code：6  表示未登录
+  if (data.code == 1) {
+    return data;
+  } else if (data.code == 6) {  // code：6  表示未登录
     localStorage.clear();
-    message.success(data.info, 1);
-    data.rows = [];
+    message.warn(data.info, 1);
+    data = defData;
     router.push('/login');
+  } else {
+    message.error(data.info, 1);
+    data = defData;
   }
   return data;
 }
 
+function error(e) {
+  message.error(`${e.statusText}(${e.status})`, 1);
+  return defData;
+}
+
 export function request(options) {
-  const {success} = options;
-  const {error} = options;
-  options = {...options};
-  delete options.success;
-  delete options.error;
+  const {method} = options;
 
   options.type = 'json';
-  options.method = 'POST';  // 默认请求方式
+  if (CommonUtil.isEmpty(method)) {
+    options.method = 'POST';  // 默认请求方式
+  }
 
   return reqwest(options)
     .then(checkCode)
-    .fail(
-      (e, msg) => {
-          message.error('网络出现故障，请稍后再试！', 1);
-      }
-    );
+    .fail(error);
 }

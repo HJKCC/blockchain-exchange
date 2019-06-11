@@ -51,7 +51,7 @@ function HeaderLayout({pathname}) {
     <Menu
       mode='horizontal'
       selectedKeys={[selectedKey]}
-      style={{ lineHeight: '64px' }}
+      className={styles.be_menu}
     >
       {MenuDom}
     </Menu>
