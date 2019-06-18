@@ -9,8 +9,7 @@ class newIndex extends Component {
 
   refrush = () => {
     this.props.dispatch({
-      type: 'newIndex/listContracts',
-      name:{}
+      type: 'newIndex/listContracts'
     });
   }
 

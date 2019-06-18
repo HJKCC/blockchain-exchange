@@ -16,6 +16,11 @@ public class ExchangeCST {
 	public static final String MAN = "男";
 	public static final String WOMEN = "女";
 
+	// 火币请求处理结果，"ok" 或"error"
+	public static final String STATUS_OK = "ok";
+	public static final String STATUS_ERROR = "error";
+	public static final String STATUS_BAD = "bad";
+
 	//统一返回码的key
 	public static final String RESULT_CODE = "code";
 	public static final String RESULT_INFO = "info";

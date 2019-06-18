@@ -167,6 +167,20 @@ public final class CommonUtil<E> {
 	}
 
 	/**
+	 * K线图时间轴
+	 * @param timeInSecond
+	 * @param period
+	 * @return
+	 */
+	public static String formatTimeAxis(long timeInSecond) {
+		timeInSecond *= 1000;
+		SimpleDateFormat dateformat = new SimpleDateFormat("yy-MM-dd HH:mm");
+		String dateStr = dateformat.format(timeInSecond);
+
+		return dateStr;
+	}
+
+	/**
 	 * <一句话功能简述> <功能详细描述>
 	 * 
 	 * @param pattern

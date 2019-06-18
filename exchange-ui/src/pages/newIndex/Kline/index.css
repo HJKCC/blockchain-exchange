@@ -1,0 +1,16 @@
+:global(.ant-modal-header) {
+  background: #6d94b9;
+  font-size: 30px;
+}
+:global(.ant-modal-title) {
+  color: rgba(255, 255, 255, 1);
+}
+:global(.ant-modal-body) {
+  padding: 5px;
+}
+:global(.ant-modal-close) {
+  color: rgba(255, 255, 255, 1);
+}
+:global(.ant-modal-footer) {
+  display: none;
+}

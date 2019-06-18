@@ -46,7 +46,6 @@ import java.util.Map;
 public class HttpClientTool {
 
 	private static Logger logger = LoggerFactory.getLogger(HttpClientTool.class);
-
 	// utf-8字符编码
 	public static final String CHARSET_UTF_8 = "utf-8";
 
@@ -420,6 +419,7 @@ public class HttpClientTool {
 
 
 	public static void main(String[] args) throws Exception {
+		long start = System.currentTimeMillis();
 
 		HttpGet request = new HttpGet("https://api.hbdm.com/market/history/kline?period=15min&size=200&symbol=BTC_CQ");
 		request.addHeader("Content-Type","application/x-www-form-urlencoded");
@@ -434,6 +434,8 @@ public class HttpClientTool {
 		while ((line = in.readLine()) != null) {
 			buffer.append(line);
 		}
+		long end = System.currentTimeMillis();
+		System.out.println(end - start);
 
 		System.out.println("返回结果是:"+buffer.toString());
 	}

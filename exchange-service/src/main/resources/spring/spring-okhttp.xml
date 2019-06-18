@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <bean id="huobiApiRequestImpl" class="com.cc.common.huobi.HuobiApiRequestImpl">
+        <!--<property name="accessKey" value="${hbdm.accessKey}"/>-->
+        <!--<property name="secretKey" value="${hbdm.secretKey}"/>-->
+        <property name="baseUrl" value="${hbdm.baseUrl}"/>
+        <property name="okHttpClient" ref="okHttp3Client"/>
+    </bean>
+
+    <!-- okhttp3 client -->
+    <bean id="okhttpConnectionPool" class="okhttp3.ConnectionPool"/>
+    <bean id="okHttpClientBuilder" class="com.cc.common.util.okhttp3.OkHttpClientBuilder">
+        <property name="connectTimeout" value="10000"/>
+        <property name="readTimeout" value="10000"/>
+        <property name="writeTimeout" value="10000"/>
+        <property name="connectionPool" ref="okhttpConnectionPool"/>
+    </bean>
+
+    <bean id="okHttp3Client" class="okhttp3.OkHttpClient" factory-bean="okHttpClientBuilder" factory-method="build"/>
+
+
+</beans>

@@ -10,11 +10,11 @@
     <!-- 配置 druid 数据源 -->
     <bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init"
           destroy-method="close">
-        <!-- 基本属性 url、user、password、driverClass -->
+        <!-- 基本属性 baseUrl、user、password、driverClass -->
         <property name="username" value="${datasource.username}"/>
         <property name="password" value="${datasource.password}"/>
         <property name="driverClassName" value="${datasource.driverClassName}"/>
-        <property name="url" value="${datasource.url}"/>
+        <property name="url" value="${datasource.baseUrl}"/>
 
         <!-- 配置初始化大小、最小、最大 -->
         <property name="initialSize" value="${datasource.initialSize}"/>

@@ -21,9 +21,9 @@ export default {
   effects:{
     // fetchNum方法名，payload2是传来的参数，是个对象，如果没参数可以写成{_,{call,put,select}}
     // yield put表示请求成功后的操作, 触发reducer中的方法
-    *listContracts({ name }, { call, put }) {
+    *listContracts(_, { call, put }) {
       // myService是引入service层那个js的一个名字，anum是后台要求传的参数，data就是后台返回来的数据
-      const res = yield call(newIndexServive.listContracts, name);
+      const res = yield call(newIndexServive.listContracts);
       console.log(res);
       yield put({
         type: 'update',
@@ -33,9 +33,9 @@ export default {
       })
     },
 
-    *kline({ name }, { call, put }) {
+    *kline({ payload }, { call, put }) {
       // myService是引入service层那个js的一个名字，anum是后台要求传的参数，data就是后台返回来的数据
-      const res = yield call(newIndexServive.kline, name);
+      const res = yield call(newIndexServive.kline, payload);
     },
   },
 

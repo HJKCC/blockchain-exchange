@@ -27,7 +27,7 @@ class test extends Component {
         ['2013/2/1', 2377.41,2419.02,2369.57,2421.15],
         ['2013/2/4', 2425.92,2428.15,2417.58,2440.38],
         ['2013/2/5', 2411,2433.13,2403.3,2437.42],
-        ['2013/2/6', 2432.68,2434.48,2427.7,2441.73],
+        ['2013/2/6', 2132.68,2434.48,2427.7,2441.73],
         ['2013/2/7', 2430.69,2418.53,2394.22,2433.89],
         ['2013/2/8', 2416.62,2432.4,2414.4,2443.03],
         ['2013/2/18', 2441.91,2421.56,2415.43,2444.8],
@@ -39,7 +39,8 @@ class test extends Component {
 
   //注册
   handleSubmit = (e) => {
-    newIndexService.merged('BTC_CW')
+    console.log(new URLSearchParams({symbol:'BTC_CW'}).toString());
+    newIndexService.merged({symbol:'BTC_CW'})
       .then((data) => {
         console.log(data);
         if (data.status == 'ok') {
@@ -82,30 +83,48 @@ class test extends Component {
   render(){
     let data0 = this.splitData(this.state.data);
     let options = {
-      //图表标题
+      // 图表标题
       title: {
-          text: '合约指数',
-          left: 50
+        text: '合约指数',
+        left: 10
       },
-      //提示框组件
+      // 提示浮框组件
       tooltip: {
-          trigger: 'axis',  //触发类型
-          axisPointer: {
-              type: 'cross'
+        trigger: 'axis',  //触发类型
+        axisPointer: {
+            type: 'cross'
+        }
+      },
+      //
+      axisPointer: {
+          link: {xAxisIndex: 'all'},
+          label: {
+              backgroundColor: '#777'
           }
       },
-      //可选图例类型
+      // 可选图例类型
       legend: {
-          data: ['日K', 'MA7', 'MA30']
+        top: 10,
+        left: 'right',
+        data: ['日K', 'MA7', 'MA30']
       },
       //图表相对位置
-      grid: {
-          left: '10%',
-          right: '10%',
-          bottom: '15%'
-      },
-      // x轴配置
-      xAxis: {
+      grid: [
+        {
+            left: '10%',
+            right: '8%',
+            height: '60%'
+        },
+        {
+            left: '10%',
+            right: '8%',
+            top: '85%',
+            height: '20%'
+        }
+      ],
+      // x轴配置，一般情况下单个 grid 组件最多只能放上下两个 x 轴，多于两个 x 轴需要通过配置 offset 属性防止同个位置多个 x 轴的重叠
+      xAxis: [
+        {
           type: 'category',
           data: data0.categoryData,
           scale: true,
@@ -115,45 +134,67 @@ class test extends Component {
           splitNumber: 20,
           min: 'dataMin',
           max: 'dataMax'
-      },
-      yAxis: {
+        },
+        {
+          type: 'category',
+          gridIndex: 1,
+          data: data0.categoryData,
+          scale: true,
+          boundaryGap : false,
+          axisLine: {onZero: false},
+          splitLine: {show: false},
+          splitNumber: 20,
+          min: 'dataMin',
+          max: 'dataMax'
+        },
+      ],
+      // y轴配置，一般情况下单个 grid 组件最多只能放左右两个 y 轴，多于两个 y 轴需要通过配置 offset 属性防止同个位置多个 Y 轴的重叠
+      yAxis: [
+        {
           type: 'value',
           scale: true,
           splitArea: {
               show: true
           }
-      },
-      dataZoom: [
-          {
-              type: 'inside',
-              start: 50,
-              end: 100
-          },
-          {
-              show: true,
-              type: 'slider',
-              y: '90%',
-              start: 50,
-              end: 100
-          }
+        },
+        {
+          scale: true,
+          gridIndex: 1,
+          splitNumber: 2,
+          axisLabel: {show: false},
+          axisLine: {show: false},
+          axisTick: {show: false},
+          splitLine: {show: false}
+        }
       ],
+      // 区域缩放
+      dataZoom: [
+        // inside: 缩放视图，通过鼠标拖拽、鼠标滚轮、手指滑动（触屏上）来缩放或漫游坐标系。显示数据：50%-100%
+        {
+          type: 'inside',
+          xAxisIndex: [0, 1],
+          start: 50,
+          end: 100
+        }
+      ],
+      // 系列列表。每个系列通过 type 决定自己的图表类型。line：折线；bar：柱状/条形图；pie：饼图；scatter：散点（气泡）图；candlestick：k线图...
       series: [
           {
               name: '日K',
               type: 'candlestick',
-              data: data0.values,
+              data: data0.values,   // [open, close, lowest, highest]
               itemStyle: {
                   normal: {
-                      color: '#ec0000',
-                      color0: '#00da3c',
-                      borderColor: '#8A0000',
-                      borderColor0: '#008F28'
+                      color: '#ec0000',  // 阳线颜色
+                      color0: '#00da3c',  // 阴线颜色
+                      borderColor: '#8A0000',  // 阳线的描边颜色
+                      borderColor0: '#008F28'  // 阴线的描边颜色
                   }
               },
-              markPoint: {
-                  label: {
+              markPoint: {  // 图表标注
+                  label: {  // 标注的文本
                       normal: {
-                          formatter: function (param) {
+                          formatter: function (param) {  //标签内容格式器
                               return param != null ? Math.round(param.value) : '';
                           }
                       }
@@ -161,8 +202,8 @@ class test extends Component {
                   data: [
                       {
                           name: '标点',
-                          coord: ['2013/5/31', 2300],
-                          value: 2300,
+                          coord: ['2013/5/31', 2100],  // 标注的坐标
+                          value: 2100,
                           itemStyle: {
                               normal: {color: 'rgb(41,60,85)'}
                           }
@@ -182,14 +223,9 @@ class test extends Component {
                           type: 'average',
                           valueDim: 'close'
                       }
-                  ],
-                  tooltip: {
-                      formatter: function (param) {
-                          return param.name + '<br>' + (param.data.coord || '');
-                      }
-                  }
+                  ]
               },
-              markLine: {
+              markLine: {  // 图表标线
                   symbol: ['none', 'none'],
                   data: [
                       [
@@ -246,11 +282,19 @@ class test extends Component {
                   normal: {opacity: 0.5}
               }
           },
+          {
+              name: 'Volume',
+              type: 'bar',
+              xAxisIndex: 1,
+              yAxisIndex: 1,
+              data:this.calculateMA(1, data0)
+            }
       ]
     }
 
     return(
       <div>
+      <Button onClick={this.handleSubmit}>test</Button>
         <Card title="折线图表之一">
           <ReactEcharts option={options} theme="Imooc"  style={{height:'400px'}}/>
         </Card>

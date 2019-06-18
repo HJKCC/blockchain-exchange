@@ -16,5 +16,6 @@
 
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.cc.api.UserService" ref="userService" timeout="10000"/>
+    <dubbo:service interface="com.hbdm.api.HbdmMarketService" ref="hbdmMarketService" timeout="10000"/>
 
 </beans>

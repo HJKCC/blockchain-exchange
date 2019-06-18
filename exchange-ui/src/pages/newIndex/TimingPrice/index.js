@@ -6,7 +6,7 @@ import * as CommonUtil from '../../../utils/CommonUtil';
 
 class TimingPrice extends Component {
   state = {
-    close: ''
+    price: ''
   }
 
   tick = () => {
@@ -15,7 +15,7 @@ class TimingPrice extends Component {
       .then((data) => {
         if (data.status == 'ok') {
           this.setState({
-            close: data.tick.close
+            price: data.tick.close
           });
         }
       });
@@ -36,7 +36,7 @@ class TimingPrice extends Component {
 
   render() {
     return (
-      <div>{this.state.close}</div>
+      <div>{this.state.price}</div>
     );
   }
 }

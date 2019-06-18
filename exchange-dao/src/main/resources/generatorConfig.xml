@@ -35,7 +35,7 @@
         </commentGenerator>
 
         <!--数据库链接地址账号密码-->
-        <jdbcConnection driverClass="${mbg.db.driverClassName}" connectionURL="${mbg.db.url}" userId="${mbg.db.username}" password="${mbg.db.password}">
+        <jdbcConnection driverClass="${mbg.db.driverClassName}" connectionURL="${mbg.db.baseUrl}" userId="${mbg.db.username}" password="${mbg.db.password}">
             <property name="useInformationSchema" value="true"/>
         </jdbcConnection>
 

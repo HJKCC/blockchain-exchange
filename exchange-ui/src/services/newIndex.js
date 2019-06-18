@@ -12,20 +12,18 @@ export function listContracts() {
 }
 
 export function merged(symbol) {
-  let data = FetchUtil.hbRequest({
+  return FetchUtil.hbRequest({
     url: '/market/detail/merged?symbol=' + symbol,
     method: 'GET',
     headers: {
       'Content-Type':'application/json;charset=UTF-8'
     }
   });
-
-  return data;
 }
 
-export function kline(symbol) {
+export function kline() {
   return FetchUtil.request({
-    url: '/market/history/kline?period=15min&size=200&symbol=' + symbol,
+    url: '/exchange-web/hbdm/market/history/kline.action?period=15min&size=200&symbol=BTC_CQ',
     method: 'GET',
     headers: {
       'Content-Type':'application/json;charset=UTF-8'
