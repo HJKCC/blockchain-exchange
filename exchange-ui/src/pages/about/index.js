@@ -4,75 +4,38 @@ import reqwest from 'reqwest';
 import router from 'umi/router';
 import Link from 'umi/link';
 
-import styles from './index.css';
+import Product from '../Product';
+import styles from './index.less';
 
-class LoginForm extends Component {
-  handleSubmit = (e) => {
-    this.props.form.validateFields((err, values) => {
-      if (!err) {
-        console.log('Received values of form: ', values);
-        reqwest({
-          url: '/exchange-web/login.action',
-          method: 'post',
-          data: values,
-          type: 'json',
-          success: function(data) {
-            console.log(data.code == 1);
-            if (data.code == 1) {
-              message.success(data.info, 2);
-              router.push('/newIndex');
-            } else if (data.code == 0) {
-              message.warning(data.info, 2);
-            }
-          },
-          error: function() {
-            message.error('网络异常，请稍后再试！', 2);
-          }
-        })
-      }
-    });
+class About extends Component {
+  orderProduct = (productInfo) => {
 
   }
 
   render() {
-    const { getFieldDecorator } = this.props.form;
+    const productInfo = this.props.productInfo;
+    const products = [{
+      name: '商品1',
+      price: '9.99'
+    }, {
+      name: '商品1212121212121212121212121212121',
+      price: '99.99'
+    }];
+    var productList = products.map((item, index) => {
+      return (
+        <Product
+          key={index}
+          productInfo={item}
+          orderProduct={this.orderProduct}
+        />
+      );
+    })
     return (
-      <Form onSubmit={this.handleSubmit} className={styles.login_form}>
-        <Form.Item>
-          {
-            getFieldDecorator(
-              'username', { rules: [{ required: true, message: 'Please input your username!' }] }
-            ) (
-               <Input prefix={<Icon type='user' style={{ color: 'rgba(0,0,0,.25)' }} />} placeholder='Username' />
-            )
-          }
-        </Form.Item>
-        <Form.Item>
-          {
-            getFieldDecorator(
-              'password', { rules: [{ required: true, message: 'Please input your Password!' }] }
-            ) (
-              <Input prefix={<Icon type='lock' style={{ color: 'rgba(0,0,0,.25)' }} />} type='password' placeholder='Password' />
-            )
-          }
-        </Form.Item>
-        <Form.Item>
-          {
-            getFieldDecorator(
-            'remember', { valuePropName: 'checked', initialValue: true, }
-            )(
-              <Checkbox>Remember me</Checkbox>
-            )
-          }
-          <a className='styles.login-form-forgot' href=''>Forgot password</a>
-          <br/>
-          <Button type='primary' onClick={this.handleSubmit} className='styles.login_form_button'> Log in </Button>
-          <br/>
-          <Link to='/register'>Register now</Link>
-        </Form.Item>
-      </Form>
+      <div>
+        {productList}
+      </div>
     );
   }
 }
 
-export default Form.create({ name: 'normal_login' })(LoginForm);
+export default About;

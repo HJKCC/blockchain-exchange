@@ -28,7 +28,7 @@ export default {
       yield put({
         type: 'update',
         payload: {
-          list: res.data,
+          list: res.rows,
         },
       })
     },

@@ -13,9 +13,9 @@ class TimingPrice extends Component {
     let symbol = CommonUtil.getSymbol(this.props.record.symbol, this.props.record.contract_type);
     newIndexService.merged(symbol)
       .then((data) => {
-        if (data.status == 'ok') {
+        if (data.code == 1) {
           this.setState({
-            price: data.tick.close
+            price: data.object.close
           });
         }
       });

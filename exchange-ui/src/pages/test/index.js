@@ -294,11 +294,10 @@ class test extends Component {
 
     return(
       <div>
-      <Button onClick={this.handleSubmit}>test</Button>
+        <Button onClick={this.handleSubmit}>test</Button>
         <Card title="折线图表之一">
           <ReactEcharts option={options} theme="Imooc"  style={{height:'400px'}}/>
         </Card>
-
       </div>
     )
   }

@@ -24,7 +24,7 @@ class Kline extends Component {
   }
 
   reflush = () => {
-    let symbol = CommonUtil.getSymbol(this.props.record.symbol, this.props.record.contract_type);
+    let symbol = CommonUtil.getSymbol(this.props.record.symbol, this.props.record.contractType);
     newIndexService.kline(symbol)
       .then((data) => {
         if (data.code == 1) {
@@ -37,7 +37,7 @@ class Kline extends Component {
       });
   }
 
-  showModel = () => {    
+  showModel = () => {
     this.reflush();
     this.setState({
       visible: true
@@ -84,7 +84,7 @@ class Kline extends Component {
   }
 
   render() {
-    let klineName = this.props.record.symbol + ' ' + CommonUtil.contractType(this.props.record.contract_type);
+    let klineName = this.props.record.symbol + ' ' + CommonUtil.contractType(this.props.record.contractType);
     let options = {
       // 图表标题
       title: {

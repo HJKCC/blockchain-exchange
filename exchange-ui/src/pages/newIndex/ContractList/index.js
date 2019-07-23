@@ -33,8 +33,8 @@ class ContractList extends Component {
     const columns = [
       {
         title: '合约代码',
-        dataIndex: 'contract_code',
-        key: 'contract_code',
+        dataIndex: 'contractCode',
+        key: 'contractCode',
         width: 150,
         render: (text) => {
           return (
@@ -53,8 +53,8 @@ class ContractList extends Component {
         }
       }, {
         title: '合约类型',
-        dataIndex: 'contract_type',
-        key: 'contract_type',
+        dataIndex: 'contractType',
+        key: 'contractType',
         width: 150,
         render: (text) => {
           return (
@@ -63,7 +63,7 @@ class ContractList extends Component {
         }
       }, {
         title: '价格',
-        key: 'contract_code',
+        key: 'price',
         width: 150,
         render: (record) => {
           return (
@@ -72,8 +72,8 @@ class ContractList extends Component {
         }
       }, {
         title: '上市日期',
-        dataIndex: 'create_date',
-        key: 'create_date',
+        dataIndex: 'createDate',
+        key: 'createDate',
         width: 250,
         render: (text) => {
           return (
@@ -82,8 +82,8 @@ class ContractList extends Component {
         }
       }, {
         title: '交割日期',
-        dataIndex: 'delivery_date',
-        key: 'delivery_date',
+        dataIndex: 'deliveryDate',
+        key: 'deliveryDate',
         width: 250,
         render: (text) => {
           return (
