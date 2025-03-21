@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Form, Modal, Input } from 'antd';
-import * as newIndexService from '../../../services/newIndex';
+import * as newIndexService from '../../../services/newIndexService';
 
 import * as CommonUtil from '../../../utils/CommonUtil';
 

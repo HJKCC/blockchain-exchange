@@ -1,5 +1,4 @@
 import * as FetchUtil from '../utils/FetchUtil';
-import * as ReqwestUtil from '../utils/ReqwestUtil';
 
 export function listContracts() {
   return FetchUtil.hbRequest({

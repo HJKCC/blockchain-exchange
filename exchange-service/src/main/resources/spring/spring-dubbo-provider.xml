@@ -17,5 +17,10 @@
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:service interface="com.cc.api.UserService" ref="userService" timeout="10000"/>
     <dubbo:service interface="com.hbdm.api.HbdmMarketService" ref="hbdmMarketService" timeout="10000"/>
-
+    <dubbo:service interface="com.hbdm.api.HbdmV1Service" ref="hbdmV1Service" timeout="10000"/>
+    <dubbo:service interface="com.cc.api.ProductOrderService" ref="productOrderService" timeout="10000"/>
+    <dubbo:service interface="com.cc.api.ProductAndOrderService" ref="productAndOrderService" timeout="10000"/>
+    <dubbo:service interface="com.cc.api.ProductService" ref="productService" timeout="10000"/>
+    <dubbo:service interface="com.cc.api.PayOrderService" ref="payOrderService" timeout="10000"/>
+    <dubbo:service interface="com.cc.api.AlipayNotifyService" ref="alipayNotifyService" timeout="10000"/>
 </beans>

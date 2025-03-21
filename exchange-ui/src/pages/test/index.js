@@ -2,7 +2,7 @@ import { Component } from 'react';
 import { Button, Card } from 'antd';
 
 import styles from './index.css';
-import * as newIndexService from '../../services/newIndex';
+import * as newIndexService from '../../services/newIndexService';
 
 //下面是按需加载
 import echarts from 'echarts/lib/echarts'

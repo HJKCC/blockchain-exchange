@@ -1,0 +1,248 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.cc.dao.PayOrderDAO">
+  <resultMap id="BaseResultMap" type="com.cc.model.PayOrderDO">
+    <id column="id" jdbcType="BIGINT" property="id" />
+    <result column="pay_no" jdbcType="VARCHAR" property="payNo" />
+    <result column="trade_no" jdbcType="VARCHAR" property="tradeNo" />
+    <result column="app_id" jdbcType="VARCHAR" property="appId" />
+    <result column="order_no" jdbcType="VARCHAR" property="orderNo" />
+    <result column="order_time" jdbcType="TIMESTAMP" property="orderTime" />
+    <result column="order_fee" jdbcType="DECIMAL" property="orderFee" />
+    <result column="pay_end_time" jdbcType="TIMESTAMP" property="payEndTime" />
+    <result column="order_status" jdbcType="VARCHAR" property="orderStatus" />
+    <result column="pay_time" jdbcType="TIMESTAMP" property="payTime" />
+    <result column="out_trade_no" jdbcType="VARCHAR" property="outTradeNo" />
+    <result column="pay_account_id" jdbcType="INTEGER" property="payAccountId" />
+    <result column="trade_type" jdbcType="VARCHAR" property="tradeType" />
+    <result column="memo" jdbcType="VARCHAR" property="memo" />
+    <result column="pay_channel" jdbcType="VARCHAR" property="payChannel" />
+    <result column="modifier" jdbcType="INTEGER" property="modifier" />
+    <result column="create_time" jdbcType="TIMESTAMP" property="createTime" />
+    <result column="modify_time" jdbcType="TIMESTAMP" property="modifyTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    id, pay_no, trade_no, app_id, order_no, order_time, order_fee, pay_end_time, order_status, 
+    pay_time, out_trade_no, pay_account_id, trade_type, memo, pay_channel, modifier, 
+    create_time, modify_time
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Long" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from BE_PAY_ORDER
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long">
+    delete from BE_PAY_ORDER
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.cc.model.PayOrderDO">
+    insert into BE_PAY_ORDER (id, pay_no, trade_no, 
+      app_id, order_no, order_time, 
+      order_fee, pay_end_time, order_status, 
+      pay_time, out_trade_no, pay_account_id, 
+      trade_type, memo, pay_channel, 
+      modifier, create_time, modify_time
+      )
+    values (#{id,jdbcType=BIGINT}, #{payNo,jdbcType=VARCHAR}, #{tradeNo,jdbcType=VARCHAR}, 
+      #{appId,jdbcType=VARCHAR}, #{orderNo,jdbcType=VARCHAR}, #{orderTime,jdbcType=TIMESTAMP}, 
+      #{orderFee,jdbcType=DECIMAL}, #{payEndTime,jdbcType=TIMESTAMP}, #{orderStatus,jdbcType=VARCHAR}, 
+      #{payTime,jdbcType=TIMESTAMP}, #{outTradeNo,jdbcType=VARCHAR}, #{payAccountId,jdbcType=INTEGER}, 
+      #{tradeType,jdbcType=VARCHAR}, #{memo,jdbcType=VARCHAR}, #{payChannel,jdbcType=VARCHAR}, 
+      #{modifier,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, #{modifyTime,jdbcType=TIMESTAMP}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.cc.model.PayOrderDO">
+    insert into BE_PAY_ORDER
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        id,
+      </if>
+      <if test="payNo != null">
+        pay_no,
+      </if>
+      <if test="tradeNo != null">
+        trade_no,
+      </if>
+      <if test="appId != null">
+        app_id,
+      </if>
+      <if test="orderNo != null">
+        order_no,
+      </if>
+      <if test="orderTime != null">
+        order_time,
+      </if>
+      <if test="orderFee != null">
+        order_fee,
+      </if>
+      <if test="payEndTime != null">
+        pay_end_time,
+      </if>
+      <if test="orderStatus != null">
+        order_status,
+      </if>
+      <if test="payTime != null">
+        pay_time,
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no,
+      </if>
+      <if test="payAccountId != null">
+        pay_account_id,
+      </if>
+      <if test="tradeType != null">
+        trade_type,
+      </if>
+      <if test="memo != null">
+        memo,
+      </if>
+      <if test="payChannel != null">
+        pay_channel,
+      </if>
+      <if test="modifier != null">
+        modifier,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="modifyTime != null">
+        modify_time,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="id != null">
+        #{id,jdbcType=BIGINT},
+      </if>
+      <if test="payNo != null">
+        #{payNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null">
+        #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderFee != null">
+        #{orderFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payEndTime != null">
+        #{payEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null">
+        #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTradeNo != null">
+        #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountId != null">
+        #{payAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeType != null">
+        #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null">
+        #{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        #{modifier,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.cc.model.PayOrderDO">
+    update BE_PAY_ORDER
+    <set>
+      <if test="payNo != null">
+        pay_no = #{payNo,jdbcType=VARCHAR},
+      </if>
+      <if test="tradeNo != null">
+        trade_no = #{tradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="appId != null">
+        app_id = #{appId,jdbcType=VARCHAR},
+      </if>
+      <if test="orderNo != null">
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="orderTime != null">
+        order_time = #{orderTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderFee != null">
+        order_fee = #{orderFee,jdbcType=DECIMAL},
+      </if>
+      <if test="payEndTime != null">
+        pay_end_time = #{payEndTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="orderStatus != null">
+        order_status = #{orderStatus,jdbcType=VARCHAR},
+      </if>
+      <if test="payTime != null">
+        pay_time = #{payTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="outTradeNo != null">
+        out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payAccountId != null">
+        pay_account_id = #{payAccountId,jdbcType=INTEGER},
+      </if>
+      <if test="tradeType != null">
+        trade_type = #{tradeType,jdbcType=VARCHAR},
+      </if>
+      <if test="memo != null">
+        memo = #{memo,jdbcType=VARCHAR},
+      </if>
+      <if test="payChannel != null">
+        pay_channel = #{payChannel,jdbcType=VARCHAR},
+      </if>
+      <if test="modifier != null">
+        modifier = #{modifier,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null">
+        create_time = #{createTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifyTime != null">
+        modify_time = #{modifyTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.cc.model.PayOrderDO">
+    update BE_PAY_ORDER
+    set pay_no = #{payNo,jdbcType=VARCHAR},
+      trade_no = #{tradeNo,jdbcType=VARCHAR},
+      app_id = #{appId,jdbcType=VARCHAR},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      order_time = #{orderTime,jdbcType=TIMESTAMP},
+      order_fee = #{orderFee,jdbcType=DECIMAL},
+      pay_end_time = #{payEndTime,jdbcType=TIMESTAMP},
+      order_status = #{orderStatus,jdbcType=VARCHAR},
+      pay_time = #{payTime,jdbcType=TIMESTAMP},
+      out_trade_no = #{outTradeNo,jdbcType=VARCHAR},
+      pay_account_id = #{payAccountId,jdbcType=INTEGER},
+      trade_type = #{tradeType,jdbcType=VARCHAR},
+      memo = #{memo,jdbcType=VARCHAR},
+      pay_channel = #{payChannel,jdbcType=VARCHAR},
+      modifier = #{modifier,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=TIMESTAMP},
+      modify_time = #{modifyTime,jdbcType=TIMESTAMP}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

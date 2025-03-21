@@ -1,5 +1,7 @@
 package com.cc.model;
 
+import com.cc.common.constant.ExchangeCST;
+
 import java.io.Serializable;
 import java.util.Date;
 
@@ -114,6 +116,14 @@ public class UserDO implements Serializable {
 
     public void setIsDeleted(Short isDeleted) {
         this.isDeleted = isDeleted;
+    }
+
+    public UserDO() {
+        super();
+        Date now = new Date();
+        this.createdTime = now;
+        this.modifiedTime = now;
+        this.isDeleted = ExchangeCST.NOT_DELETED;
     }
 
     @Override

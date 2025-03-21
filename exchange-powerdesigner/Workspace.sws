@@ -5,6 +5,9 @@
 <Workspace>
 	<Local Expanded="Yes">
 		<Model Expanded="Yes" ID="{8F9450D9-A202-4239-BB7A-D96E3FA6BE76}" Name="exchange-powerdesigner" Selected="Yes" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="exchange-powerdesigner.prj"/>
+		<Model Expanded="Yes" ID="{BE76082A-A601-4733-83BF-C45350331ED7}" Loaded="No" Name="Jedis_UML" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="/workspace/jedis-study/Jedis_UML/Jedis_UML.prj"/>
+		<Model Expanded="Yes" ID="{22CA08BF-1A4E-4484-86EE-B5DCDBFEA010}" Loaded="No" Name="attendanceServer" Type="{18112060-1A4B-11D1-83D9-444553540000}" URL="/蓝鸽/物联网片区/校园智能考勤/整理--陈诚/无感考勤主要业务图/attendanceServer.oom"/>
+		<Model ID="{9E891D76-B2CD-4727-A3EE-5FD23BD191F8}" Name="Design_Pattern_UML" Type="{FF4B6538-9856-42CF-B9B9-304ED370CEAA}" URL="/workspace/design-pattern/Design_Pattren_UML/Design_Pattren_UML.prj"/>
 	</Local>
 	<BrowserModule Name="Repository"/>
 </Workspace>

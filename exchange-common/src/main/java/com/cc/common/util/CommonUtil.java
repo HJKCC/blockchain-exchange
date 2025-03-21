@@ -3,6 +3,8 @@
  */
 package com.cc.common.util;
 
+import org.apache.commons.lang3.StringUtils;
+
 import java.io.ByteArrayInputStream;
 import java.io.ByteArrayOutputStream;
 import java.io.ObjectInputStream;
@@ -147,16 +149,9 @@ public final class CommonUtil<E> {
 
 	// 当前时间格式为string
 	/**
-	 * <一句话功能简述> <功能详细描述>
-	 * 
-	 * @param pattern
-	 *            :"yyyyMMddHHmmss"
-	 * @param field
-	 *            :Calendar.SECOND 按秒编移
-	 * @param timeLapse
-	 *            ：编移数值
-	 * @return String [返回类型说明]
-	 * @see [类、类#方法、类#成员]
+	 * @param pattern :"yyyyMMddHHmmss"
+	 * @param field :Calendar.SECOND 按秒编移
+	 * @param timeLapse ：编移数值
 	 */
 	public static String formatDateString(String pattern, int field, int timeLapse) {
 		Calendar calendar = Calendar.getInstance();
@@ -167,9 +162,24 @@ public final class CommonUtil<E> {
 	}
 
 	/**
+	 * 根据传入的格式将日期对象转成对应格式的日期字符串
+	 *
+	 * @param date   日期对象
+	 * @param format 日期格式
+	 * @return 转换后的日期字符串
+	 */
+	public static String formatDate(Date date, String format) {
+		if ((date == null) || StringUtils.isBlank(format)) {
+			return null;
+		}
+		SimpleDateFormat formatter = new SimpleDateFormat(format);
+		return formatter.format(date);
+	}
+
+	/**
 	 * K线图时间轴
 	 * @param timeInSecond
-	 * @param period
+	 * @param timeInSecond
 	 * @return
 	 */
 	public static String formatTimeAxis(long timeInSecond) {
@@ -181,14 +191,8 @@ public final class CommonUtil<E> {
 	}
 
 	/**
-	 * <一句话功能简述> <功能详细描述>
-	 * 
-	 * @param pattern
-	 *            :"yyyyMMddHHmmss"
-	 * @param date
-	 *            : 日期
-	 * @return String [返回类型说明]
-	 * @see [类、类#方法、类#成员]
+	 * @param pattern :"yyyyMMddHHmmss"
+	 * @param date : 日期
 	 */
 	public static String dateString(String pattern, Date date) {
 		SimpleDateFormat frm = new SimpleDateFormat(pattern);

@@ -1,16 +1,13 @@
 package com.cc.common.huobi.model;
 
-import java.util.ArrayList;
-import java.util.List;
-
 /**
  * @author chencheng0816@gmail.com
  * @date 2019/6/13 10:49
- * @Description HuobiListResult
+ * @Description HuobiTickResult
  */
-public class HuobiListResult<T> extends HuobiBaseResult {
+public class HuobiTickResult<T> extends HuobiBaseResult {
 	private String ch;
-	private List<T> data = new ArrayList<>();
+	private T tick;
 
 	public String getCh() {
 		return ch;
@@ -20,11 +17,11 @@ public class HuobiListResult<T> extends HuobiBaseResult {
 		this.ch = ch;
 	}
 
-	public List<T> getData() {
-		return data;
+	public T getTick() {
+		return tick;
 	}
 
-	public void setData(List<T> data) {
-		this.data = data;
+	public void setTick(T tick) {
+		this.tick = tick;
 	}
 }

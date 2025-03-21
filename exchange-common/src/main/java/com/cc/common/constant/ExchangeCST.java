@@ -7,6 +7,8 @@ package com.cc.common.constant;
  */
 public class ExchangeCST {
 
+	public static Boolean ENV_DEV = true;  // 是否为本地开发环境
+
 	//服务端默认编码
 	public static final String CHARSET_GBK = "GBK";
 	//处理字符数组编码

@@ -25,7 +25,7 @@ import java.util.Date;
 @RequestMapping("user")
 public class UserController extends BaseController {
 
-	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserController.class);
 
 	@Autowired
 	private UserService userService;

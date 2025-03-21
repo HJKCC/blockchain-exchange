@@ -5,7 +5,7 @@ import java.util.List;
 
 public class BaseReturnListVO {
 	private String returnCode;
-	private List<BaseReturnInfoVO> baseReturnInfoVOs = new ArrayList<>();
+	private List<AlipayRespInfo> alipayRespInfos = new ArrayList<>();
 	private int size = 0;
 
 	public String getReturnCode() {
@@ -16,21 +16,21 @@ public class BaseReturnListVO {
 		this.returnCode = returnCode;
 	}
 
-	public List<BaseReturnInfoVO> getBaseReturnInfoVOs() {
-		return baseReturnInfoVOs;
+	public List<AlipayRespInfo> getAlipayRespInfos() {
+		return alipayRespInfos;
 	}
 
-	public void setBaseReturnInfoVOs(List<BaseReturnInfoVO> baseReturnInfoVOs) {
-		this.baseReturnInfoVOs = baseReturnInfoVOs;
-		this.size = baseReturnInfoVOs.size();
+	public void setAlipayRespInfos(List<AlipayRespInfo> alipayRespInfos) {
+		this.alipayRespInfos = alipayRespInfos;
+		this.size = alipayRespInfos.size();
 	}
 	
 	public int getSize() {
 		return size;
 	}
 	
-	public void addBaseReturnInfoVO(BaseReturnInfoVO baseReturnInfoVO) {
-		this.baseReturnInfoVOs.add(baseReturnInfoVO);
+	public void addBaseReturnInfoVO(AlipayRespInfo alipayRespInfo) {
+		this.alipayRespInfos.add(alipayRespInfo);
 		size++;
 	}
 }

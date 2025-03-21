@@ -52,14 +52,16 @@ function checkCode(data) {
 }
 
 function error(e) {
-  error.data = defData;
-  message.error( `${e.message}(${e.status})`, 1);
-  return e.data;
+  // e.data = defData;
+  // e.data.code = e.status;
+  // e.data.info = e.message;
+  console.error( `${e.message}(${e.status})`);
+  // return defData;
 }
 
 function hbError(e) {
-  error.data = [];
-  error.tick = '';
+  e.data = [];
+  e.tick = '';
   message.error( `${e.message}(${e.status})`, 1);
   return e.data;
 }

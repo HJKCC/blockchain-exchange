@@ -19,6 +19,7 @@ import redis.clients.jedis.params.sortedset.ZIncrByParams;
 * @date 2016年8月1日 下午2:39:19
  */
 public class RedisClientImpl implements RedisClient {
+    private static final int defaultExpire = 60;
 	@Autowired
 	private volatile JedisPoolConfig config;
     private JedisPool pool = null;
@@ -2200,6 +2201,98 @@ public class RedisClientImpl implements RedisClient {
 	public List<Long> bitfield(String s, String... strings) {
 		return null;
 	}
+
+    /**
+     * 加锁(可能死锁)
+     * @param key redis key
+     * @param expire 过期时间，单位秒
+     * @return true:加锁成功，false，加锁失败
+     */
+    public boolean lock(String key, int expire) {
+        Jedis jedis = null;
+        try {
+            jedis = pool.getResource();
+            long status = jedis.setnx(key, "1");
+
+            if (status == 1) {
+                jedis.expire(key, expire);
+                return true;
+            }
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+        return false;
+    }
+
+    public boolean lock(String key) {
+        return lock2(key, defaultExpire);
+    }
+
+    /**
+     * 加锁
+     * @param key redis key
+     * @param expire 过期时间，单位秒
+     * @return true:加锁成功，false，加锁失败
+     */
+    public boolean lock2(String key, int expire) {
+        Jedis jedis = null;
+        try {
+            jedis = pool.getResource();
+            long value = System.currentTimeMillis() + expire;
+            long status = jedis.setnx(key, String.valueOf(value));
+
+            if (status == 1) {
+                return true;
+            }
+
+            long oldExpireTime = Long.parseLong(jedis.get(key));
+            if(oldExpireTime < System.currentTimeMillis()) { //超时
+                long newExpireTime = System.currentTimeMillis() + expire;
+                long currentExpireTime = Long.parseLong(jedis.getSet(key, String.valueOf(newExpireTime)));
+
+                return (currentExpireTime == oldExpireTime); //防止死锁
+            }
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+
+        return false;
+    }
+
+    public long unLock1(String key) {
+        Jedis jedis = null;
+        Long res = null;
+        try {
+            jedis = pool.getResource();
+            res = jedis.del(key);
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+        return res;
+    }
+
+    public long unLock2(String key) {
+        Jedis jedis = null;
+        Long res = null;
+        try {
+            jedis = pool.getResource();
+            long oldExpireTime = Long.parseLong(jedis.get(key));
+            if(oldExpireTime > System.currentTimeMillis()) {
+                res = jedis.del(key);
+            }
+        } finally {
+            if (jedis != null) {
+                jedis.close();
+            }
+        }
+        return res;
+    }
 
 	/**
      * 销毁连接池

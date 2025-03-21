@@ -6,7 +6,8 @@ import Link from 'umi/link';
 
 import styles from './index.less';
 
-class Product extends Component {
+class Product extends Component {  
+
   render() {
     const productInfo = this.props.productInfo;
     return (

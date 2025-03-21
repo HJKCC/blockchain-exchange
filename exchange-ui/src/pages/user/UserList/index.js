@@ -20,7 +20,11 @@ class UserList extends Component {
     });
   }
 
-  handleDelete = (value) => {
+  confirmDelete = (value) => {
+      if (value == '') {
+        message.warn('请先选择用户后，再进行操作！');
+        return 0;
+      }
     Modal.confirm({
       title: '删除用户',
       content: '确认要删除所选用户吗?',
@@ -34,10 +38,6 @@ class UserList extends Component {
   };
 
   removeUsers = (value) => {
-    if (value == '') {
-      message.warn('请先选择用户后，再进行操作');
-      return 0;
-    }
     if (typeof(value) != 'number') {
       value = value.join(',');
     } else {
@@ -130,7 +130,7 @@ class UserList extends Component {
                 <a href="javascript:;">edit</a>
               </EditUser>
               <div className={styles.be_column_delete}>
-                <a href="javascript:void(0)" onClick={this.handleDelete.bind(this,record.id)}>delete</a>
+                <a href="javascript:void(0)" onClick={this.confirmDelete.bind(this,record.id)}>delete</a>
               </div>
             </div>
           );
@@ -164,7 +164,7 @@ class UserList extends Component {
           </AddUser>
         </div>
         <div className={styles.be_del_user}>
-          <Button type='primary' onClick={this.handleDelete.bind(this, this.state.selectedRowKeys)}>删除用户</Button>
+          <Button type='primary' onClick={this.confirmDelete.bind(this, this.state.selectedRowKeys)}>删除用户</Button>
         </div>
         <div>
           <Table className={styles.be_table_user}

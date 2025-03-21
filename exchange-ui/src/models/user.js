@@ -1,4 +1,4 @@
-import * as userServive from '../services/user';
+import * as userServive from '../services/userService';
 import * as CommonUtil from '../utils/CommonUtil';
 
 export default {

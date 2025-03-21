@@ -1,5 +1,6 @@
 import * as FetchUtil from '../utils/FetchUtil';
 import * as ReqwestUtil from '../utils/ReqwestUtil';
+import * as CommonUtil from '../utils/CommonUtil';
 
 export function listUsers() {
   return FetchUtil.request({

@@ -12,7 +12,12 @@
   top: 16px;
   position: absolute;
 }
-
+.ws {
+  height: 32px;
+  right: 180px;
+  top: 16px;
+  position: absolute;
+}
 .login_button {
   right: 5px;
 }

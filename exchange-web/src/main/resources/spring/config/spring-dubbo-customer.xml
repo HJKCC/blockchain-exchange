@@ -14,5 +14,10 @@
     <!-- 声明需要暴露的服务接口 -->
     <dubbo:reference interface="com.cc.api.UserService" id="userService" check="false"/>
     <dubbo:reference interface="com.hbdm.api.HbdmMarketService" id="hbdmMarketService" check="false"/>
-
+    <dubbo:reference interface="com.hbdm.api.HbdmV1Service" id="hbdmV1Service" check="false"/>
+    <dubbo:reference interface="com.cc.api.ProductOrderService" id="productOrderService" check="false"/>
+    <dubbo:reference interface="com.cc.api.ProductAndOrderService" id="productAndOrderService" check="false"/>
+    <dubbo:reference interface="com.cc.api.ProductService" id="productService" check="false"/>
+    <dubbo:reference interface="com.cc.api.PayOrderService" id="payOrderService" check="false"/>
+    <dubbo:reference interface="com.cc.api.AlipayNotifyService" id="alipayNotifyService" check="false"/>
 </beans>

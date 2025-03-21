@@ -8,16 +8,13 @@ import java.util.List;
 import com.cc.api.UserService;
 import com.cc.common.util.CommonUtil;
 import com.cc.model.UserDO;
-import com.cc.shiro.session.ShiroSession;
 import com.cc.shiro.session.ShiroSessionDAO;
-import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.authz.AuthorizationInfo;
 import org.apache.shiro.authz.SimpleAuthorizationInfo;
 import org.apache.shiro.realm.AuthorizingRealm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.PrincipalCollection;
-import org.apache.shiro.subject.Subject;
 import org.apache.shiro.subject.support.DefaultSubjectContext;
 import org.springframework.beans.factory.annotation.Autowired;
 

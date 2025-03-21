@@ -1,4 +1,4 @@
-import * as newIndexServive from '../services/newIndex';
+import * as newIndexServive from '../services/newIndexService';
 
 export default {
   // 命名空间名字

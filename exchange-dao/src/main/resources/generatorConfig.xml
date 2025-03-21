@@ -61,8 +61,11 @@
         </javaClientGenerator>
 
         <!--生成对应表及类名-->
-        <!-- <table tableName="user" domainObjectName="User"/> -->
-        <table tableName="BE_USER" domainObjectName="UserDO"/>
+        <!-- <table tableName="BE_USER" domainObjectName="UserDO"/>-->
+        <!-- <table tableName="BE_PRODUCT" domainObjectName="ProductDO"/>-->
+        <!-- <table tableName="BE_ORDER" domainObjectName="OrderDO"/>-->
+        <!-- <table tableName="BE_ORDER_PRODUCT" domainObjectName="ProductAndOrderDO"/>-->
+        <table tableName="BE_PAY_ORDER" domainObjectName="PayOrderDO"/>
 
     </context>
 </generatorConfiguration>

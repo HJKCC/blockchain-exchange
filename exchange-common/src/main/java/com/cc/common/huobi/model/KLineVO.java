@@ -4,7 +4,9 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 
 /**
- * The candlestick/kline data.
+ * @author chencheng0816@gmail.com
+ * @date 2019/6/15 15:44
+ * @Description ContractVO K 线信息类
  */
 public class KLineVO  implements Serializable {
 
@@ -15,7 +17,7 @@ public class KLineVO  implements Serializable {
   /**
    * 成交量(币), 即 sum(每一笔成交量(张)*单张合约面值/该笔成交价)
    */
-  private long amount;
+  private double amount;
   /**
    * 成交笔数
    */
@@ -23,19 +25,19 @@ public class KLineVO  implements Serializable {
   /**
    * 开盘价
    */
-  private long open;
+  private double open;
   /**
    * 收盘价,当K线为最晚的一根时，是最新成交价
    */
-  private long close;
+  private double close;
   /**
    * 最低价
    */
-  private long low;
+  private double low;
   /**
    * 最高价
    */
-  private long high;
+  private double high;
   /**
    * 成交量(张)
    */
@@ -49,8 +51,12 @@ public class KLineVO  implements Serializable {
     this.id = id;
   }
 
-  public long getAmount() {
+  public double getAmount() {
     return amount;
+  }
+
+  public void setAmount(double amount) {
+    this.amount = amount;
   }
 
   public long getCount() {
@@ -61,39 +67,35 @@ public class KLineVO  implements Serializable {
     this.count = count;
   }
 
-  public void setAmount(long amount) {
-    this.amount = amount;
-  }
-
-  public long getOpen() {
+  public double getOpen() {
     return open;
   }
 
-  public void setOpen(long open) {
+  public void setOpen(double open) {
     this.open = open;
   }
 
-  public long getClose() {
+  public double getClose() {
     return close;
   }
 
-  public void setClose(long close) {
+  public void setClose(double close) {
     this.close = close;
   }
 
-  public long getLow() {
+  public double getLow() {
     return low;
   }
 
-  public void setLow(long low) {
+  public void setLow(double low) {
     this.low = low;
   }
 
-  public long getHigh() {
+  public double getHigh() {
     return high;
   }
 
-  public void setHigh(long high) {
+  public void setHigh(double high) {
     this.high = high;
   }
 

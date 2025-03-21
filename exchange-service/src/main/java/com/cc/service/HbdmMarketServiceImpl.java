@@ -1,8 +1,8 @@
 package com.cc.service;
 
-import com.alibaba.fastjson.JSON;
 import com.cc.common.huobi.*;
 import com.cc.common.huobi.model.HuobiListResult;
+import com.cc.common.huobi.model.HuobiTickResult;
 import com.cc.common.huobi.model.KLineVO;
 import com.cc.common.huobi.model.RequestAndJsonParser;
 import com.cc.common.huobi.util.InputChecker;
@@ -38,6 +38,20 @@ public class HbdmMarketServiceImpl implements HbdmMarketService {
 
 		requestAndJsonParser.jsonParser = (str -> {
 			return FastJsonUtil.fromJson(str, new TypeReference<HuobiListResult<KLineVO>>(){});
+		});
+
+		return huobiApiRequestImpl.callSync(requestAndJsonParser);
+	}
+
+	@Override
+	public HuobiTickResult<KLineVO> merged(String symbol) {
+		RequestAndJsonParser<HuobiTickResult<KLineVO>> requestAndJsonParser = new RequestAndJsonParser<>();
+		UrlParamsBuilder builder = UrlParamsBuilder.build()
+				.putToUrl("symbol", symbol);
+		requestAndJsonParser.request = huobiApiRequestImpl.createRequestByGet("/market/detail/merged", builder);
+
+		requestAndJsonParser.jsonParser = (str -> {
+			return FastJsonUtil.fromJson(str, new TypeReference<HuobiTickResult<KLineVO>>(){});
 		});
 
 		return huobiApiRequestImpl.callSync(requestAndJsonParser);

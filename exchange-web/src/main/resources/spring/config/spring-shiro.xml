@@ -80,8 +80,8 @@
         <property name="filterChainDefinitions">
             <value>
                 /logout* = login
-                /user/* = login
                 /user/register* = anon
+                /user/* = login
                 /list* = login
                 /webpack/ = login
                 /webpack/login = anon

@@ -17,4 +17,5 @@
 }
 :global(.ant-modal-footer) {
   background: #a3b9ce;
+  display: block;
 }

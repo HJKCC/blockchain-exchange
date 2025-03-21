@@ -6,6 +6,7 @@ import * as CommonUtil from '../utils/CommonUtil';
 import HeaderLayout from './HeaderLayout';
 import UserInfo from './UserInfo';
 import ResetPassword from '../pages/user/ResetPassword';
+import WSForm from '../pages/WSForm';
 
 import styles from './index.css';
 
@@ -45,6 +46,10 @@ function BasicLayout(props) {
     })
   }
 
+  const sysTime = (
+    <WSForm></WSForm>
+  );
+
   const loginOrRegister = (
     <Form>
         <Button type='primary' className={styles.login_button} onClick={login}>登录</Button>
@@ -73,6 +78,9 @@ function BasicLayout(props) {
 
   return (
     <Layout className={styles.MainLayout}>
+      <div className={styles.ws}>
+        {sysTime}
+      </div>
       <div className={styles.settingMenu}>
         {noLogin
             ?

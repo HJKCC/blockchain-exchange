@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { Form, Modal, Input, Card } from 'antd';
-import * as newIndexService from '../../../services/newIndex';
+import * as newIndexService from '../../../services/newIndexService';
 
 import echarts from 'echarts/lib/echarts'
 //导入折线图
