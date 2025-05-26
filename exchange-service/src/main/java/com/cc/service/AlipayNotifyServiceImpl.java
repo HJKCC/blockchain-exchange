@@ -16,4 +16,5 @@ public class AlipayNotifyServiceImpl implements AlipayNotifyService {
 	public boolean payNotifyHandle(Map<String,String> notifyData) {
 		return false;
 	}
+	
 }

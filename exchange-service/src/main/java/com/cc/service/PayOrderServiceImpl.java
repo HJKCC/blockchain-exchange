@@ -29,47 +29,56 @@ public class PayOrderServiceImpl implements PayOrderService {
 
 	@Override
 	public int insert(PayOrderDO payOrderDO) {
+		// 插入支付订单
 		return 0;
 	}
 
 	@Override
 	public PayOrderDO selectByOrderNo(String orderNo) {
+		// 根据订单号查询支付订单
 		String appId = alipayConfig.getAppId();
 		return null;
 	}
 
 	@Override
 	public PayOrderDO selectByPayNo(String payNo) {
+		// 根据支付号查询支付订单
 		return null;
 	}
 
 	@Override
 	public int orderClose(String payNo) {
+		// 根据支付号关闭订单
 		return 0;
 	}
 
 	@Override
 	public int updatePayRecord(PayOrderDO payOrderDO) {
+		// 更新支付记录
 		return 0;
 	}
 
 	@Override
 	public int updatePayResult(PayOrderDO payOrderDO) {
+		// 更新支付结果
 		return 0;
 	}
 
 	@Override
 	public List<PayOrderDO> listPaySuccessBySettleDate(String settleDate) {
+		// 根据结算日期查询支付成功的订单
 		return null;
 	}
 
 	@Override
 	public List<Long> listPayAccountIdBySettleDate(String settleDate) {
+		// 根据结算日期查询支付账号
 		return null;
 	}
 
 	@Override
 	public int closeTimeOutOrder() {
+		// 关闭超时订单
 		return 0;
 	}
 

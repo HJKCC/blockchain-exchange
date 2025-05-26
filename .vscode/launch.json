@@ -1,0 +1,56 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Current File",
+            "request": "launch",
+            "mainClass": "${file}"
+        },
+        {
+            "type": "java",
+            "name": "SnowflakeIdWorker",
+            "request": "launch",
+            "mainClass": "com.cc.common.util.sequence.SnowflakeIdWorker",
+            "projectName": "exchange-common"
+        },
+        {
+            "type": "java",
+            "name": "TestJavaCallCpp",
+            "request": "launch",
+            "mainClass": "TestJavaCallCpp",
+            "projectName": "exchange-service"
+        },
+        {
+            "type": "java",
+            "name": "TestMain",
+            "request": "launch",
+            "mainClass": "TestMain",
+            "projectName": "exchange-service"
+        },
+        {
+            "type": "java",
+            "name": "ServiceMain",
+            "request": "launch",
+            "mainClass": "com.cc.ServiceMain",
+            "projectName": "exchange-service"
+        },
+        {
+            "type": "java",
+            "name": "HttpClientTool",
+            "request": "launch",
+            "mainClass": "com.cc.controller.HttpClientTool",
+            "projectName": "exchange-web"
+        },
+        {
+            "type": "java",
+            "name": "ShellRunner",
+            "request": "launch",
+            "mainClass": "org.mybatis.generator.api.ShellRunner",
+            "projectName": "mybatis-generator-plugins"
+        }
+    ]
+}
